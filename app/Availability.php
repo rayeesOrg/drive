@@ -22,4 +22,20 @@ class Availability extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Get the instructor that owns the availability.
+     */
+    public function instructor()
+    {
+        return $this->belongsTo('App\Instructor', 'instructor_id', 'instructor_id');
+    }
+
+    /**
+     * Get the instructor that owns the availability.
+     */
+    public function location()
+    {
+        return $this->belongsTo('App\Location', 'location_id', 'location_id');
+    }
 }

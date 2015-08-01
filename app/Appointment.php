@@ -22,4 +22,20 @@ class Appointment extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Get the learner that owns the appointment.
+     */
+    public function learner()
+    {
+        return $this->belongsTo('App\Learner', 'learner_id', 'learner_id');
+    }
+
+    /**
+     * Get the instructor of the appointment.
+     */
+    public function instructor()
+    {
+        return $this->belongsTo('App\Instructor', 'instructor_id', 'instructor_id');
+    }
 }

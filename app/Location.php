@@ -22,4 +22,12 @@ class Location extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Get the availabilities of the instructor.
+     */
+    public function availabilities()
+    {
+        return $this->hasMany('App\Availability', 'location_id', 'location_id');
+    }
 }

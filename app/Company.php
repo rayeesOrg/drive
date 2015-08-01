@@ -22,4 +22,12 @@ class Company extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    /**
+     * Get the instructors of the company.
+     */
+    public function instructors()
+    {
+        return $this->hasMany('App\Instructor', 'company_id', 'company_id');
+    }
 }
