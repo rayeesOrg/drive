@@ -21,6 +21,9 @@ class CreateAppointmentsTable extends Migration
             $table->time('app_start_time');
             $table->time('app_finish_time');
             $table->timestamps();
+
+            $table->foreign('instructor_id')->references('instructor_id')->on('instructors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('learner_id')->references('learner_id')->on('learners')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

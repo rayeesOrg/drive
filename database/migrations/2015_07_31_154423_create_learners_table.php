@@ -27,6 +27,8 @@ class CreateLearnersTable extends Migration
             $table->string('mob_no', 15);
             $table->string('tel_no', 15);
             $table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

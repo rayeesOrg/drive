@@ -21,6 +21,9 @@ class CreateAvailabilitiesTable extends Migration
             $table->time('available_from');
             $table->time('available_to');
             $table->timestamps();
+
+            $table->foreign('location_id')->references('location_id')->on('locations')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('instructor_id')->references('instructor_id')->on('instructors')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

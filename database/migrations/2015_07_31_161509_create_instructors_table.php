@@ -30,6 +30,10 @@ class CreateInstructorsTable extends Migration
             $table->string('tel_no', 15);
             $table->string('all_locations'); //Stores all the locations of an instructor
             $table->timestamps();
+
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('company_id')->references('company_id')->on('companies')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicles')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
