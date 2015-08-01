@@ -15,7 +15,7 @@ class CreateLearnersTable extends Migration
         //To create the learners table
         Schema::create('learners', function (Blueprint $table) {
             $table->increments('learner_id');
-            $table->string('user_id')->unique();
+            $table->integer('user_id')->length(10)->unsigned();
             $table->string('title', 10);
             $table->string('first_name', 50);
             $table->string('last_name', 50);

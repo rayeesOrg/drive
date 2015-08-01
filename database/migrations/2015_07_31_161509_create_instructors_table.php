@@ -15,9 +15,9 @@ class CreateInstructorsTable extends Migration
         //To create the instructors table
         Schema::create('instructors', function (Blueprint $table) {
             $table->increments('instructor_id');
-            $table->string('user_id')->unique();
-            $table->string('company_id');
-            $table->string('vehicle_id')->unique();
+            $table->integer('user_id')->length(10)->unsigned();
+            $table->integer('company_id')->length(10)->unsigned();
+            $table->integer('vehicle_id')->length(10)->unsigned();
             $table->string('title', 10);
             $table->string('first_name', 50);
             $table->string('last_name', 50);

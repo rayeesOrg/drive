@@ -15,8 +15,8 @@ class CreateAvailabilitiesTable extends Migration
         //To create the availabilities table
         Schema::create('availabilities', function (Blueprint $table) {
             $table->increments('availability_id');
-            $table->string('location_id');
-            $table->string('instructor_id');
+            $table->integer('location_id')->length(10)->unsigned();
+            $table->integer('instructor_id')->length(10)->unsigned();
             $table->date('date');
             $table->time('available_from');
             $table->time('available_to');
