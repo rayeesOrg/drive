@@ -17,6 +17,16 @@ Route::get('/', function () { return view('index'); });
 //Routes for all methods in the UserController which is a RESTful controller
 Route::controller('user', 'UserController');
 
+// Authentication routes...
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+Route::get('auth/logout', 'Auth\AuthController@getLogout');
+
+// Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
+
+
 //Route to get login page
 // Route::get('login', function () {
 //     return view('login');
