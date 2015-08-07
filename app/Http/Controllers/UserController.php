@@ -37,20 +37,18 @@ class UserController extends Controller
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
-        
+
         //Checking validation outcome
         if ($v->fails()) {
             //validation failed
             return redirect()->action('UserController@getRegister');
         } else {
-
-            $auth = Auth::attempt([
-                'email' => $request->input('email'),
-                'password' => $request->input('password')
-                ]);
-            //validation passed
-            if ($auth) {
-                //Authentication passed
+            /**
+             * Validation passed
+             * Attempting to login
+             */
+            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1])) {
+                //Authentication successfull
                 return redirect()->route('home');
             } else {
                 //Authentication failed
