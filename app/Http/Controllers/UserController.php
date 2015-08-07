@@ -31,15 +31,13 @@ class UserController extends Controller
      */
     public function postLogin(Request $request)
     {
-        // $email = $request->input('email');
-        // $password = $request->input('password');
-
         //validation rules
         $v = Validator::make($request->all(), 
             [
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
+        
         //Checking validation outcome
         if ($v->fails()) {
             //validation failed
