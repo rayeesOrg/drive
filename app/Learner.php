@@ -17,6 +17,13 @@ class Learner extends Model
     protected $primaryKey = 'learner_id';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['user_id', 'title', 'first_name', 'last_name', 'dob', 'address', 'town', 'county', 'postcode', 'mob_no', 'tel_no'];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool

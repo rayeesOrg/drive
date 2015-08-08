@@ -45,7 +45,7 @@ class UserController extends Controller
         } else {
             /**
              * Validation passed
-             * Attempting to login
+             * Attempting to authenticate user
              */
             if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1])) {
                 //Authentication successfull
@@ -73,7 +73,67 @@ class UserController extends Controller
      *
      * @return Response
      */
-    public function postRegister()
+    public function postRegister(Request $request)
+    {
+        //validation rules
+        $v = Validator::make($request->all(), 
+            [
+                'title' => '',
+                'first_name' => '',
+                'last_name' => '',
+                'dob' => '',
+                'address' => '',
+                'town' => '',
+                'county' => '',
+                'postcode' => '',
+                'mob_no' => '',
+                'tel_no' => '',
+                'all_locations' => '',
+                'email' => 'required|email',
+                'password' => 'required',
+                'password_confirm' => '',
+                'role' => ''
+            ]);
+
+        //Checking validation outcome
+        if ($v->fails()) {
+            //Validation failed
+            return redirect()->route('home');
+        } else {
+            /**
+             * Validation passed
+             */
+
+            //Validation code
+            $code = ''; //Need to update this to make a random string with 60 char length
+
+            //Creating the user record
+            $user = App\User::create(
+                [
+                'email' => $request->email,
+                'password' => $request->password, //Need to hash this password
+                'code' => $code,
+                'active' => $, //Do I really need this? default value
+                'role' => $request->role
+                ]);
+
+            $role = $request->role;
+
+            //If statement to determine the user role
+            if ($role == 'learner') {
+                //Creating the learner record if the user role is learner
+
+            } elseif ($role == 'instructor') {
+                //Creating the instructor record if the user role is instructor
+                
+            }
+        }
+    }
+
+    /**
+     * The method to activate the user account
+     */
+    public function getActivate($code)
     {
         //
     }
