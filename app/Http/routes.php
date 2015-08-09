@@ -11,21 +11,7 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@index'));
 
-// Route to get home page
-Route::get('/', function () {
-    return view('index');
-});
-
-//Route to get login page
-Route::get('login', function () {
-    return view('login');
-});
-
-//Route to get registration page
-Route::get('register', function () {
-    return view('registration');
-});
+//Routes for all methods in the UserController - RESTful controller
+Route::controller('user', 'UserController');

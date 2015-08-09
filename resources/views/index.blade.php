@@ -10,6 +10,12 @@
 
     <p>Hello, This is index page</p>
 
+    @if (Auth::guest())
+    <p>I'm a guest</p>
+    @else
+    <p>I'm logged in</p>
+    @endif
+
   </head>
   <body>
 
