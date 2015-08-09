@@ -41,18 +41,19 @@ class UserController extends Controller
         //Checking validation outcome
         if ($v->fails()) {
             //validation failed
-            return redirect()->action('UserController@getRegister');
+            return back()->withErrors($v)->withInput();
         } else {
             /**
              * Validation passed
              * Attempting to authenticate user
              */
-            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1])) {
+            if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1]))
+            {
                 //Authentication successfull
                 return redirect()->route('home');
             } else {
                 //Authentication failed
-                return redirect()->action('UserController@getRegister');
+                return redirect()->action('UserController@getRegister'); //Need changing
             }
         }
     }
@@ -78,42 +79,42 @@ class UserController extends Controller
         //validation rules
         $v = Validator::make($request->all(), 
             [
-                'title' => '',
-                'first_name' => '',
-                'last_name' => '',
-                'dob' => '',
-                'address' => '',
-                'town' => '',
-                'county' => '',
-                'postcode' => '',
-                'mob_no' => '',
-                'tel_no' => '',
-                'all_locations' => '',
-                'email' => 'required|email',
-                'password' => 'required',
-                'password_confirm' => '',
-                'role' => ''
+                'title' => 'required|min:2|max:10',
+                'first_name' => 'required|alpha|max:50',
+                'last_name' => 'required|alpha|max:50',
+                'dob' => 'date',
+                'address' => 'required|max:50',
+                'town' => 'required|alpha|max:25',
+                'county' => 'alpha|max:25',
+                'postcode' => 'required|max:15',
+                'mob_no' => 'required|digits_between:10,15',
+                'tel_no' => 'digits_between:10,15',
+                'email' => 'required|email|max:50|unique:users,email',
+                'password' => 'required|min:6|alpha_num',
+                'password_confirm' => 'required|same:password',
+                'role' => 'required|in:learner,instructor',
+                'all_locations' => 'required_if:role,instructor' //should this be required or not?
             ]);
 
         //Checking validation outcome
         if ($v->fails()) {
             //Validation failed
-            return redirect()->route('home');
+            return back()->withErrors($v)->withInput();
         } else {
             /**
              * Validation passed
              */
 
             //Validation code
-            $code = ''; //Need to update this to make a random string with 60 char length
+            $code = str_random(60); //Need to update this to make a random string with 60 char length
 
             //Creating the user record
             $user = App\User::create(
                 [
                 'email' => $request->email,
-                'password' => $request->password, //Need to hash this password
+                'password' => Hash::make($request->password), //Hashing the password
                 'code' => $code,
-                'active' => $, //Do I really need this? default value
+                'active' => 0, //Do I really need this? default value
                 'role' => $request->role
                 ]);
 
@@ -122,10 +123,36 @@ class UserController extends Controller
             //If statement to determine the user role
             if ($role == 'learner') {
                 //Creating the learner record if the user role is learner
+                $learner = App\Learner::create(
+                    [
+                        'title' => $request->title,
+                        'first_name' => $request->first_name,
+                        'last_name' => $request->last_name,
+                        'dob' => $request->dob,
+                        'address' => $request->address,
+                        'town' => $request->town,
+                        'county' => $request->county,
+                        'postcode' => $request->postcode,
+                        'mob_no' => $request->mob_no,
+                        'tel_no' => $request->tel_no
+                    ]);
 
             } elseif ($role == 'instructor') {
                 //Creating the instructor record if the user role is instructor
-                
+                $learner = App\Instructor::create(
+                    [
+                        'title' => $request->title,
+                        'first_name' => $request->first_name,
+                        'last_name' => $request->last_name,
+                        'dob' => $request->dob,
+                        'address' => $request->address,
+                        'town' => $request->town,
+                        'county' => $request->county,
+                        'postcode' => $request->postcode,
+                        'mob_no' => $request->mob_no,
+                        'tel_no' => $request->tel_no,
+                        'all_locations' => $request->all_locations
+                    ]);
             }
         }
     }
@@ -138,6 +165,9 @@ class UserController extends Controller
         //
     }
 
+    /**
+     * The method to log out the user
+     */
     public function getLogout()
     {
         //Logs out the user
