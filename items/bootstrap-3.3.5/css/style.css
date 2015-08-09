@@ -1,0 +1,13 @@
+.signup{
+background-color: #222535; 
+border-color: #DD8705;}
+
+.signup .panel-body label
+ {
+ color: #FDFD2E;
+ font-weight: normal;
+ }
+
+ .regbutton{
+ 	float: right;
+ }
