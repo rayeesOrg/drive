@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Learner;
+use App\Instructor;
 use Validator;
 use Hash;
+use Mail;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -93,7 +95,7 @@ class UserController extends Controller
                 'postcode' => 'required|max:15',
                 'mob_no' => 'required|digits_between:10,15',
                 'tel_no' => 'digits_between:10,15',
-                'email' => 'required|email|max:50', //|unique:users,email
+                'email' => 'required|email|max:50|unique:users,email',
                 'password' => 'required|min:6|alpha_num',
                 'password_confirm' => 'required|same:password',
                 'role' => 'required|in:learner,instructor',
@@ -146,28 +148,39 @@ class UserController extends Controller
                         'tel_no' => $request->tel_no
                     ]);
 
-                // $learner = new Learner;
-
-                // $learner->user_id = $user_id;
-                // $learner->title = $request->title;
-                // $learner->first_name = $request->first_name;
-                // $learner->last_name = $request->last_name;
-                // $learner->dob = $request->dob;
-                // $learner->address = $request->address;
-                // $learner->town = $request->town;
-                // $learner->county = $request->county;
-                // $learner->postcode = $request->postcode;
-                // $learner->mob_no = $request->mob_no;
-                // $learner->tel_no = $request->tel_no;
-
-                // $learner->save();
-
-                return redirect()->route('home');
-
-            } elseif ($role == 'instructor') {
+            } elseif ($request->role == 'instructor') {
                 //Creating the instructor record if the user role is instructor
-                return redirect()->action('UserController@getRegister');
+                $create = Instructor::create(
+                    [
+                        'user_id' => $user_id,
+                        'title' => $request->title,
+                        'first_name' => $request->first_name,
+                        'last_name' => $request->last_name,
+                        'dob' => $request->dob,
+                        'address' => $request->address,
+                        'town' => $request->town,
+                        'county' => $request->county,
+                        'postcode' => $request->postcode,
+                        'mob_no' => $request->mob_no,
+                        'tel_no' => $request->tel_no,
+                        'all_locations' => $request->all_locations
+                    ]);
+
             } //End of If statement
+
+            //If the user is registered successfully
+            if ($user AND $create) {
+
+                Mail::send('emails.activate', ['user' => $user, 'create' => $create], function ($message) use ($user, $create) {
+                    //
+                    $message->to($user->email, $create->first_name)->subject('Account activation!');
+                });
+
+                //Send the activation code via e-mail
+                return redirect()->route('home');
+            }
+
+            // return redirect()->action('UserController@getRegister');
             
         } //End of If statement
 
@@ -179,6 +192,18 @@ class UserController extends Controller
     public function getActivate($code)
     {
         //
+        // echo $code;
+        $activation = User::where('code', $code)->where('active', 0)->first();
+
+        if ($activation) {
+            $activation->active = 1;
+            $activation->code = '';
+            $activation->save();
+
+            echo "You can now log in";
+        } else {
+            echo "does not exist";
+        }
 
     }  //End of getActivate method
 
