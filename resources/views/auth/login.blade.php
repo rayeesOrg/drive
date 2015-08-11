@@ -17,7 +17,7 @@
           <div class="panel panel-default">
             <div class="panel-body">
               <div class="page-header">
-                <h3>Login Here!</h3>
+                <h3>Login </h3>
               </div> <!-- /.page-header -->
               @if (session('status'))
                 <div class="alert alert-success">
