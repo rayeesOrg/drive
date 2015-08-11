@@ -8,6 +8,9 @@
 
     <title>Drive</title>
 
+  </head>
+  <body>
+
     <p>Hello, This is registration page</p>
 
     @if (count($errors) > 0)
@@ -103,8 +106,6 @@
       </div>
     </form>
 
-  </head>
-  <body>
 
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
