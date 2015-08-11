@@ -30,7 +30,7 @@ class UserController extends Controller
     } //End of getLogin method
 
     /**
-     * The method to post the login page
+     * The method to post the login form
      *
      * @return Response
      */
@@ -82,7 +82,7 @@ class UserController extends Controller
     } //End of getRegister method
 
     /**
-     * The method to post the registration page
+     * The method to post the registration form
      *
      * @return Response
      */
@@ -225,4 +225,39 @@ class UserController extends Controller
 
     } //End of getLogout method
 
+    /**
+     * The method to change password
+     */
+    public function getChangePassword() 
+    {
+        //
+
+    } //End of getChangePassword method
+
+    /**
+     * The method to post the change password form
+     */
+    public function postChangePassword() 
+    {
+        //
+
+    } //End of getChangePassword method
+
+    /**
+     * The method to reset password
+     */
+    public function getResetPassword() 
+    {
+        //
+
+    } //End of getResetPassword method
+
+    /**
+     * The method to post the reset password form
+     */
+    public function postResetPassword() 
+    {
+        //
+
+    } //End of postResetPassword method
 }
