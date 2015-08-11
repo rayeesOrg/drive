@@ -10,11 +10,22 @@
 
     <p>Hello, This is index page</p>
 
+    @if (session('status'))
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    @endif
+
     @if (Auth::guest())
     <p>I'm a guest</p>
     @else
     <p>I'm logged in</p>
     @endif
+
+    <a href="{{ URL::action('UserController@getLogin') }}" class="btn btn-default" role="button">Log in</a>
+    <a href="{{ URL::action('UserController@getRegister') }}" class="btn btn-default" role="button">Register</a>
+    <a href="{{ URL::action('UserController@getChangePassword') }}" class="btn btn-default" role="button">Change password</a>
+    <a href="{{ URL::action('UserController@getLogout') }}" class="btn btn-default" role="button">Logout</a>
 
   </head>
   <body>
