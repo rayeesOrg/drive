@@ -10,10 +10,78 @@
 
     <p>Hello, This is registration page</p>
 
-    <!-- resources/views/auth/register.blade.php -->
+    @if (count($errors) > 0)
+      <div class="alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
 
     <form method="POST" action="register">
       {!! csrf_field() !!}
+
+      <div>
+          Title
+          <input type="text" name="title" value="{{ old('title') }}">
+      </div>
+
+      <div>
+          First name
+          <input type="text" name="first_name" value="{{ old('first_name') }}">
+      </div>
+
+      <div>
+          Last name
+          <input type="text" name="last_name" value="{{ old('last_name') }}">
+      </div>
+
+      <div>
+          Date of birth
+          <input type="text" name="dob" value="{{ old('dob') }}">
+      </div>
+
+      <div>
+          address
+          <input type="text" name="address" value="{{ old('address') }}">
+      </div>
+
+      <div>
+          town
+          <input type="text" name="town" value="{{ old('town') }}">
+      </div>
+
+      <div>
+          county
+          <input type="text" name="county" value="{{ old('county') }}">
+      </div>
+
+      <div>
+          postcode
+          <input type="text" name="postcode" value="{{ old('postcode') }}">
+      </div>
+
+      <div>
+          mob_no
+          <input type="text" name="mob_no" value="{{ old('mob_no') }}">
+      </div>
+
+      <div>
+          tel_no
+          <input type="text" name="tel_no" value="{{ old('tel_no') }}">
+      </div>
+
+      <div>
+          role
+          <input type="text" name="role" value="{{ old('role') }}">
+      </div>
+
+      <div>
+          Locations
+          <input type="text" name="all_locations" value="{{ old('all_locations') }}">
+      </div>
 
       <div>
           Email
@@ -27,7 +95,7 @@
 
       <div>
           Confirm Password
-          <input type="password" name="password_confirmation">
+          <input type="password" name="password_confirm">
       </div>
 
       <div>

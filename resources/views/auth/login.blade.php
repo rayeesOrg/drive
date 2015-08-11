@@ -19,6 +19,11 @@
               <div class="page-header">
                 <h3>Login Here!</h3>
               </div> <!-- /.page-header -->
+              @if (session('status'))
+                <div class="alert alert-success">
+                  {{ session('status') }}
+                </div>
+              @endif
               @if (count($errors) > 0)
                 <div class="alert alert-danger">
                   <ul>
@@ -31,10 +36,10 @@
               <form method="POST" action="login">
                 {!! csrf_field() !!}
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email</label>
+                  <label for="email">Email</label>
                   <div class="input-group">
                     <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-user"></span></span>
-                    <input type="email" class="form-control" name="email" id="exampleInputEmail1" value="{{ old('email') }}" placeholder="Email or Username">
+                    <input type="email" class="form-control" name="email" id="email" value="{{ old('email') }}" placeholder="Email">
                   </div> <!-- /.input-group -->
                 </div> <!-- /.form-group -->
 
