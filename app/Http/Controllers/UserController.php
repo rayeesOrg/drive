@@ -230,17 +230,57 @@ class UserController extends Controller
      */
     public function getChangePassword() 
     {
-        //
+        //Loading and returning the view
+        return view('auth.password_change');
 
     } //End of getChangePassword method
 
     /**
      * The method to post the change password form
      */
-    public function postChangePassword() 
+    public function postChangePassword(Request $request) 
     {
-        //
+        //validation
+        $v = Validator::make($request->all(), 
+            [
+                //Validation parameters
+                'password_old' => 'required',
+                'password_new' => 'required|min:6|different:password_old|alpha_num',
+                'password_confirm' => 'required|same:password_new'
+            ]);
 
+        //If statement
+        if ($v->fails()) {
+            /**
+             * Validation failed
+             * Redirecting back to the page with errors and inputs
+             */
+            return back()->withErrors($v)->withInput();
+
+        } else {
+            /**
+             * Validation passed
+             */
+
+            //Current user
+            $user = $request->user();
+
+            if (Hash::check($request->password_old, $user->password))
+            {
+                //Password matches
+                //Saving the new password
+                $user->password = Hash::make($request->password_new);
+                $user->save();
+
+                //Redirects the user to home page after changing the password
+                return redirect()->route('home')->with('status', 'Your password has been changed!');
+
+            } else {
+                //No Match
+                return redirect()->route('home')->with('status', 'Wrong password');
+
+            } //End of if statement
+        } //End of if statement
     } //End of getChangePassword method
 
     /**
@@ -255,7 +295,7 @@ class UserController extends Controller
     /**
      * The method to post the reset password form
      */
-    public function postResetPassword() 
+    public function postResetPassword(Request $request) 
     {
         //
 
