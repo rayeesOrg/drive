@@ -36,17 +36,22 @@ class UserController extends Controller
      */
     public function postLogin(Request $request)
     {
-        //validation rules
+        //validation
         $v = Validator::make($request->all(), 
             [
+                //Validation parameters
                 'email' => 'required|email',
                 'password' => 'required'
             ]);
 
         //Checking validation outcome
         if ($v->fails()) {
-            //validation failed
+            /**
+             * Validation failed
+             * Redirecting back to the page with errors and inputs
+             */
             return back()->withErrors($v)->withInput();
+
         } else {
             /**
              * Validation passed
@@ -55,12 +60,13 @@ class UserController extends Controller
             if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1]))
             {
                 //Authentication successfull
-                return redirect()->route('home');
+                return redirect()->route('home')->with('status', 'Logged in!');
+
             } else {
                 //Authentication failed
-                return redirect()->action('UserController@getRegister'); //Need changing
+                return redirect()->route('home')->with('status', 'Failed to log in!!'); //Need changing
             }
-        }
+        } //End of if statement
     } //End of postLogin method
 
     /**
@@ -82,13 +88,14 @@ class UserController extends Controller
      */
     public function postRegister(Request $request)
     {
-        //validation rules
+        //validation
         $v = Validator::make($request->all(), 
             [
+                //Validation parameters
                 'title' => 'required|min:2|max:10',
                 'first_name' => 'required|alpha|max:50',
                 'last_name' => 'required|alpha|max:50',
-                'dob' => 'date',
+                'dob' => 'date_format:Y/m/d', //Change this format in d/m/Y in here and in mySQL. d/m/Y format currently not being saved into db
                 'address' => 'required|max:50',
                 'town' => 'required|alpha|max:25',
                 'county' => 'alpha|max:25',
@@ -104,15 +111,19 @@ class UserController extends Controller
 
         //Checking validation outcome
         if ($v->fails()) {
-            //Validation failed
+            /**
+             * Validation failed
+             * Redirecting back to the page with errors and inputs
+             */
             return back()->withErrors($v)->withInput();
+
         } else {
             /**
              * Validation passed
              */
 
-            //Validation code
-            $code = str_random(60); //Need to update this to make a random string with 60 char length
+            //Random string to activate the account
+            $code = str_random(60);
 
             //Creating the user record
             $user = User::create(
@@ -120,22 +131,16 @@ class UserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password), //Hashing the password
                 'code' => $code,
-                'active' => 0, //Do I really need this? default value
+                'active' => 0,
                 'role' => $request->role
                 ]);
-
-            $user_id = $user->user_id;
-
-            // echo "Hello";
-            // var_dump($user_id);
-            // echo "$user_id";
 
             //If statement to determine the user role
             if ($request->role == 'learner') {
                 //Creating the learner record if the user role is learner
                 $create = Learner::create(
                     [
-                        'user_id' => $user_id,
+                        'user_id' => $user->user_id,
                         'title' => $request->title,
                         'first_name' => $request->first_name,
                         'last_name' => $request->last_name,
@@ -152,7 +157,7 @@ class UserController extends Controller
                 //Creating the instructor record if the user role is instructor
                 $create = Instructor::create(
                     [
-                        'user_id' => $user_id,
+                        'user_id' => $user->user_id,
                         'title' => $request->title,
                         'first_name' => $request->first_name,
                         'last_name' => $request->last_name,
@@ -170,20 +175,16 @@ class UserController extends Controller
 
             //If the user is registered successfully
             if ($user AND $create) {
-
+                //Send the activation code via e-mail
                 Mail::send('emails.activate', ['user' => $user, 'create' => $create], function ($message) use ($user, $create) {
-                    //
                     $message->to($user->email, $create->first_name)->subject('Account activation!');
                 });
 
-                //Send the activation code via e-mail
-                return redirect()->route('home');
-            }
+                //Redirect to a more suitable page
+                return redirect()->route('home')->with('status', 'E-mail sent to the provided address'); //Need changing
 
-            // return redirect()->action('UserController@getRegister');
-            
+            } //End of If statement
         } //End of If statement
-
     } //End of postRegister method
 
     /**
@@ -191,21 +192,25 @@ class UserController extends Controller
      */
     public function getActivate($code)
     {
-        //
-        // echo $code;
+        //Finding the user with the given code
         $activation = User::where('code', $code)->where('active', 0)->first();
 
         if ($activation) {
+            //Updating the user record
             $activation->active = 1;
             $activation->code = '';
             $activation->save();
 
-            echo "You can now log in";
-        } else {
-            echo "does not exist";
-        }
+            //Account activated successfully
+            return redirect()->action('UserController@getLogin')->with('status', 'Your account has been successfully activated. Please try to log in!');
 
-    }  //End of getActivate method
+        } else {
+
+            //Account activation failed
+            return redirect()->route('home')->with('status', 'Sorry, We were unable to activate your account!');
+
+        } //End of if statement
+    } //End of getActivate method
 
     /**
      * The method to log out the user
@@ -216,7 +221,7 @@ class UserController extends Controller
         Auth::logout();
 
         //Redirects the user to home page after logging out
-        return redirect()->route('home');
+        return redirect()->route('home')->with('status', 'You have been logged out!');
 
     } //End of getLogout method
 

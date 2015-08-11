@@ -10,6 +10,12 @@
 
     <p>Hello, This is index page</p>
 
+    @if (session('status'))
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    @endif
+
     @if (Auth::guest())
     <p>I'm a guest</p>
     @else
