@@ -28,17 +28,17 @@
             @endif
 
             <div class="panel-body">
-              <form class="form-horizontal">
+              <form class="form-horizontal" method="POST" action="register">
+                {!! csrf_field() !!}
                 <div class="col-md-6"> 
                   <div class="form-group">
                     <label for="inputtitle" class="col-md-4 control-label"> Title</label>
                     <div class="col-md-3">
                       <select class="form-control" name="title" value="{{ old('title') }}">
-                        <option value="">Mr</option>
-                        <option value="">Mrs</option>
-                        <option value="">Miss</option>
-                        <option value="">Ms</option>
-                        <option selected value="">Mr</option>
+                        <option selected value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Miss">Miss</option>
+                        <option value="Ms">Ms</option>
                       </select>
                     </div>
                   </div>                
@@ -180,12 +180,9 @@
                         <label><input type="checkbox"> I agree to the Terms of Use</label>
                       </div>
                     </div>
-                  </div>                
-              </form> <!-- /.form end tag -->
-            </div> <!-- /.pannel-body closed -->
+                  </div>
 
-
-                <div class="panel-footer"> 
+                  <div class="panel-footer"> 
                   <div class="form-group">
                     <div class="regbutton col-md-4">
                       <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span>Submit</button>
@@ -193,6 +190,8 @@
                   </div> 
                 </div>
 
+              </form> <!-- /.form end tag -->
+            </div> <!-- /.pannel-body closed -->
           </div> <!-- /.panel pane;-default -->
         </div> <!-- /.row -->
       </div> <!-- /.container --><!-- /.row -->
