@@ -11,16 +11,15 @@
   </head>
   <body>
 
-  	<p>hi</p>
+  	<p>List of instructors</p>
 
-<!-- {{ $instructors }} -->
+	@foreach ($instructors as $instructor)
+		<p>E-mail: {{ $instructor->email }} </p>
+		<p>First name: {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} </p>
+		<img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200" alt="My avatar">
+	@endforeach
 
-@foreach ($instructors as $instructor)
-	<p>E-mail: {{ $instructor->email }} </p>
-	<p>First name: {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} </p>
-@endforeach
-
-<script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
+	<script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
    </body>
 </html>
