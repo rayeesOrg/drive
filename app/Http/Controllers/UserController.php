@@ -138,9 +138,8 @@ class UserController extends Controller
             //If statement to determine the user role
             if ($request->role == 'learner') {
                 //Creating the learner record if the user role is learner
-                $create = Learner::create(
+                $learner = new Learner(
                     [
-                        'user_id' => $user->user_id,
                         'title' => $request->title,
                         'first_name' => $request->first_name,
                         'last_name' => $request->last_name,
@@ -153,11 +152,12 @@ class UserController extends Controller
                         'tel_no' => $request->tel_no
                     ]);
 
+                $create = User::find($user->user_id)->learner()->save($learner);
+
             } elseif ($request->role == 'instructor') {
                 //Creating the instructor record if the user role is instructor
-                $create = Instructor::create(
+                $instructor = new Instructor(
                     [
-                        'user_id' => $user->user_id,
                         'title' => $request->title,
                         'first_name' => $request->first_name,
                         'last_name' => $request->last_name,
@@ -171,6 +171,8 @@ class UserController extends Controller
                         'all_locations' => $request->all_locations
                     ]);
 
+                $create = User::find($user->user_id)->instructor()->save($instructor);
+
             } //End of If statement
 
             //If the user is registered successfully
@@ -183,6 +185,8 @@ class UserController extends Controller
                 //Redirect to a more suitable page
                 return redirect()->route('home')->with('status', 'E-mail sent to the provided address'); //Need changing
 
+                /*Need an else statement here*/
+                
             } //End of If statement
         } //End of If statement
     } //End of postRegister method
