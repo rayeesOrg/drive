@@ -14,9 +14,17 @@
   	<p>List of instructors</p>
 
 	@foreach ($instructors as $instructor)
-		<p>E-mail: {{ $instructor->email }} </p>
-		<p>First name: {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} </p>
-		<img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200" alt="My avatar">
+		<img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar">
+		<p>Name: {{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} </br>
+		Areas taught: {{ $instructor->instructor->all_locations }} </br>
+		Mob: {{ $instructor->instructor->mob_no }}
+
+		@if($instructor->instructor->tel_no != NULL)
+			</br>
+			Tel: {{ $instructor->instructor->tel_no }} </p>
+		@else
+			</p>
+		@endif
 	@endforeach
 
 	<script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>

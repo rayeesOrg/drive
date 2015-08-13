@@ -29,6 +29,7 @@
     <a href="{{ URL::action('UserController@getRegister') }}" class="btn btn-default" role="button">Register</a>
     <a href="{{ URL::action('UserController@getChangePassword') }}" class="btn btn-default" role="button">Change password</a>
     <a href="{{ URL::action('UserController@getLogout') }}" class="btn btn-default" role="button">Logout</a>
+    <a href="{{ URL::action('InstructorController@getIndex') }}" class="btn btn-default" role="button">List of instructors</a>
     
 
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
