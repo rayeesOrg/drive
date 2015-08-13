@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Instructor;
 
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class InstructorController extends Controller
     {
         //
         $instructors = User::with('instructor')->has('instructor')->get();
-        //$users = User::has('instructor')->get();
+        // $instructors = User::with('instructor', 'learner')->get();
 
         return view('instructor_list', ['instructors' => $instructors]);
     }
