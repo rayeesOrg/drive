@@ -56,7 +56,7 @@
             </nav>
           </div>   
     
-    <div class="container" id="cnt1">
+     <div class="container" id="cnt1">
       <div class="row feature">
 	@foreach ($instructors as $instructor)
       <div class="col-md-3">
@@ -72,12 +72,12 @@
 			@else
 				</p>
 			@endif
-	      <a href="#" class="btn btn-success lower">View Profile</a>
+	      <a href="{{ URL::action('InstructorController@getProfile') }}/{{ $instructor->user_id }}" class="btn btn-success lower">View Profile</a>
 	    </div>
 	  </div>	
 	 @endforeach
-</div>
-</div>
+    </div>
+    </div>
 	<div class="panel-footer"> 
                   <div class="form-group">                  
                       Already Registered ?  <a href="#" >Login here</a>
