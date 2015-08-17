@@ -12,7 +12,7 @@
   <body>
 
   	<p>Instructor Profile</p>
-  	
+
   	@if (session('status'))
       <div class="alert alert-success">
         {{ session('status') }}
@@ -26,6 +26,10 @@
 	  	@endforeach
 	@endif
 
+	<p>
+	<a href="{{ URL::action('InstructorController@getAddVehicle') }}" class="btn btn-default" role="button">Add a vehicle</a>
+	</p>
+	
   	<script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
    </body>
