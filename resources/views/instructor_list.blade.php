@@ -13,9 +13,9 @@
 
   	<p>List of instructors</p>
 
-  	@if (session('status'))
-      <div class="alert alert-success">
-        {{ session('status') }}
+  	@if (session('message'))
+      <div class="alert {{ Session::get('alert-class', 'alert-success') }}">
+        {{ session('message') }}
       </div>
     @endif
 
