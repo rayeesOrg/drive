@@ -25,4 +25,27 @@ class InstructorController extends Controller
         //Returning the view with $instructors
         return view('instructor_list', ['instructors' => $instructors]);
     }
+
+    /**
+     * Display the instructor profile.
+     *
+     * @return Response
+     */
+    public function getProfile($id = Null)
+    {
+        if (isset($id)) {
+            //All users who are instructors
+            $instructor = User::with('instructor')->has('instructor')->where('active', 1)->where('user_id', $id)->get();
+
+            if (count($instructor) > 0) {
+                //Returning the view with $instructors
+                return view('instructor_profile', ['instructor' => $instructor]);
+            } else {
+                return redirect()->action('InstructorController@getIndex')->with('status', 'No instructor profile found!');
+            }
+        } else {
+            return redirect()->action('InstructorController@getIndex');
+        }
+        
+    }
 }

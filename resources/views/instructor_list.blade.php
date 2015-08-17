@@ -13,8 +13,14 @@
 
   	<p>List of instructors</p>
 
+  	@if (session('status'))
+      <div class="alert alert-success">
+        {{ session('status') }}
+      </div>
+    @endif
+
 	@foreach ($instructors as $instructor)
-		<img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar">
+		<a href="{{ URL::action('InstructorController@getProfile') }}/{{ $instructor->user_id }}"><img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar"></a>
 		<p>Name: {{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} </br>
 		Areas taught: {{ $instructor->instructor->all_locations }} </br>
 		Mob: {{ $instructor->instructor->mob_no }}
@@ -25,6 +31,7 @@
 		@else
 			</p>
 		@endif
+
 	@endforeach
 
 	<script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
