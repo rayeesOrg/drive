@@ -96,15 +96,15 @@ class InstructorController extends Controller
              * Validation passed
              */
             //Creating the learner record if the user role is learner
-            // $vehicle = Vehicle::create(
-            //     [
-            //         'reg_no' => $request->reg_no,
-            //         'make' => $request->make,
-            //         'model' => $request->model,
-            //         'transmission' => $request->transmission
-            //     ]);
+            $vehicle = Vehicle::create(
+                [
+                    'reg_no' => $request->reg_no,
+                    'make' => $request->make,
+                    'model' => $request->model,
+                    'transmission' => $request->transmission
+                ]);
 
-            // $create = Instructor::find($user->user_id)->learner()->save($vehicle);
+            $create = Instructor::find($user->user_id)->learner()->save($vehicle);
         }
     }
 
