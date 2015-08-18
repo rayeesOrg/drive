@@ -72,7 +72,7 @@
 			@else
 				</p>
 			@endif
-	      <a href="#" class="btn btn-success lower">View Profile</a>
+	      <a href="{{ URL::action('InstructorController@getProfile') }}/{{ $instructor->user_id }}" class="btn btn-success lower">View Profile</a>
 	    </div>
 	  </div>	
 	 @endforeach
