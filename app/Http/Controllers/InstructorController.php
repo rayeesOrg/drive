@@ -41,13 +41,14 @@ class InstructorController extends Controller
             //The instructor with the given user_id
             $instructor = User::with('instructor')->has('instructor')->where('active', 1)->find($id);
 
-            //Instructor_id of the instructor
-            $instructor_id = $instructor->instructor->instructor_id;
-
-            //list of vehicles of the instructor
-            $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
-
             if (count($instructor) == 1) {
+
+                //Instructor_id of the instructor
+                $instructor_id = $instructor->instructor->instructor_id;
+
+                //list of vehicles of the instructor
+                $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
+            
                 //Returning the view with $instructors
                 return view('instructor_profile', ['instructor' => $instructor, 'vehicles' => $vehicles]);
 
