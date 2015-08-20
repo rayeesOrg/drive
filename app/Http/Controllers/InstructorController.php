@@ -22,8 +22,8 @@ class InstructorController extends Controller
      */
     public function getIndex()
     {
-        //All users who are instructors
-        $instructors = User::with('instructor')->has('instructor')->get();
+        //All users who are instructors and active
+        $instructors = User::with('instructor')->has('instructor')->where('active', 1)->get();
 
         //Returning the view with $instructors
         return view('instructor_list', ['instructors' => $instructors]);
@@ -38,12 +38,16 @@ class InstructorController extends Controller
     public function getProfile($id = Null)
     {
         if (isset($id)) {
-            //All users who are instructors
-            $instructor = User::with('instructor')->has('instructor')->where('active', 1)->where('user_id', $id)->get();
-            $instructor_id = 6;
+            //The instructor with the given user_id
+            $instructor = User::with('instructor')->has('instructor')->where('active', 1)->find($id);
+
+            //Instructor_id of the instructor
+            $instructor_id = $instructor->instructor->instructor_id;
+
+            //list of vehicles of the instructor
             $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
 
-            if (count($instructor) > 0) {
+            if (count($instructor) == 1) {
                 //Returning the view with $instructors
                 return view('instructor_profile', ['instructor' => $instructor, 'vehicles' => $vehicles]);
 
@@ -72,7 +76,7 @@ class InstructorController extends Controller
     }
 
     /**
-     * Display the add vehicle form.
+     * Post the add vehicle form.
      *
      * @return Response
      */
@@ -99,10 +103,8 @@ class InstructorController extends Controller
         } else {
             /**
              * Validation passed
+             * Creating the vehicle record
              */
-
-            // $user = Auth::user();
-            //Creating the learner record if the user role is learner
             $vehicle = Vehicle::create(
                 [
                     'instructor_id' => $request->user()->instructor->instructor_id,
@@ -114,8 +116,10 @@ class InstructorController extends Controller
 
             if ($vehicle) {
                 return redirect()->action('InstructorController@getIndex')->with('message', 'Vehicle added!')->with('alert-class', 'alert-info');
-            }
-        }
-    }
+            } else {
+                return redirect()->action('InstructorController@getIndex')->with('message', 'Unable to add vehicle')->with('alert-class', 'alert-danger');
+            } //End of if statement
+        } //End of if statement
+    } //End of postAddVehicle method
 
 } //End of class

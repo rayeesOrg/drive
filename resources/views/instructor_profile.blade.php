@@ -19,15 +19,13 @@
       </div>
     @endif
 
-  	@if (count($instructor) > 0)
-	  	@foreach ($instructor as $profile)
-	  		<img src="http://www.gravatar.com/avatar/{{ md5($profile->email) }}?s=200&d=mm" alt="My avatar">
-	  		{{ $profile->instructor->title }} {{ $profile->instructor->first_name }} {{ $profile->instructor->last_name }} 
+  	@if (count($instructor) == 1)
+	  		<img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar">
+	  		{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} 
 
           @foreach ($vehicles as $vehicle)
             <p>{{ $vehicle->make }}</p>
           @endforeach
-	  	@endforeach
     @endif
 
 	<p>
