@@ -13,18 +13,20 @@
 
   	<p>Instructor Profile</p>
 
-  	@if (session('status'))
-      <div class="alert alert-success">
-        {{ session('status') }}
+  	@if (session('message'))
+      <div class="alert {{ Session::get('alert-class', 'alert-success') }}">
+        {{ session('message') }}
       </div>
     @endif
 
-  	@if (count($instructor) > 0)
-	  	@foreach ($instructor as $profile)
-	  		<img src="http://www.gravatar.com/avatar/{{ md5($profile->email) }}?s=200&d=mm" alt="My avatar">
-	  		{{ $profile->instructor->title }} {{ $profile->instructor->first_name }} {{ $profile->instructor->last_name }}
-	  	@endforeach
-	@endif
+  	@if (count($instructor) == 1)
+	  		<img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar">
+	  		{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }} 
+
+          @foreach ($vehicles as $vehicle)
+            <p>{{ $vehicle->make }}</p>
+          @endforeach
+    @endif
 
 	<p>
 	<a href="{{ URL::action('InstructorController@getAddVehicle') }}" class="btn btn-default" role="button">Add a vehicle</a>

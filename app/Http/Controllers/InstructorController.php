@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Instructor;
+use App\Vehicle;
 
 use Illuminate\Http\Request;
 
+use Validator;
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -19,8 +22,8 @@ class InstructorController extends Controller
      */
     public function getIndex()
     {
-        //All users who are instructors
-        $instructors = User::with('instructor')->has('instructor')->get();
+        //All users who are instructors and active
+        $instructors = User::with('instructor')->has('instructor')->where('active', 1)->get();
 
         //Returning the view with $instructors
         return view('instructor_list', ['instructors' => $instructors]);
@@ -35,12 +38,18 @@ class InstructorController extends Controller
     public function getProfile($id = Null)
     {
         if (isset($id)) {
-            //All users who are instructors
-            $instructor = User::with('instructor')->has('instructor')->where('active', 1)->where('user_id', $id)->get();
+            //The instructor with the given user_id
+            $instructor = User::with('instructor')->has('instructor')->where('active', 1)->find($id);
 
-            if (count($instructor) > 0) {
+            //Instructor_id of the instructor
+            $instructor_id = $instructor->instructor->instructor_id;
+
+            //list of vehicles of the instructor
+            $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
+
+            if (count($instructor) == 1) {
                 //Returning the view with $instructors
-                return view('instructor_profile', ['instructor' => $instructor]);
+                return view('instructor_profile', ['instructor' => $instructor, 'vehicles' => $vehicles]);
 
             } else {
                 //If no result, redirect the user to the instructor_list
@@ -67,7 +76,7 @@ class InstructorController extends Controller
     }
 
     /**
-     * Display the add vehicle form.
+     * Post the add vehicle form.
      *
      * @return Response
      */
@@ -77,10 +86,10 @@ class InstructorController extends Controller
         $v = Validator::make($request->all(), 
             [
                 //Validation parameters
-                'reg_no' => 'required|alpha_num|min:2|max:15',
+                'reg_no' => 'required|min:2|max:15',
                 'make' => 'required|max:25',
                 'model' => 'required|max:25',
-                'transmission' => 'required|in:automatic,manual'
+                'transmission' => 'required|in:Automatic,Manual'
             ]);
 
         //Checking validation outcome
@@ -94,18 +103,23 @@ class InstructorController extends Controller
         } else {
             /**
              * Validation passed
+             * Creating the vehicle record
              */
-            //Creating the learner record if the user role is learner
-            // $vehicle = Vehicle::create(
-            //     [
-            //         'reg_no' => $request->reg_no,
-            //         'make' => $request->make,
-            //         'model' => $request->model,
-            //         'transmission' => $request->transmission
-            //     ]);
+            $vehicle = Vehicle::create(
+                [
+                    'instructor_id' => $request->user()->instructor->instructor_id,
+                    'reg_no' => $request->reg_no,
+                    'make' => $request->make,
+                    'model' => $request->model,
+                    'transmission' => $request->transmission
+                ]);
 
-            // $create = Instructor::find($user->user_id)->learner()->save($vehicle);
-        }
-    }
+            if ($vehicle) {
+                return redirect()->action('InstructorController@getIndex')->with('message', 'Vehicle added!')->with('alert-class', 'alert-info');
+            } else {
+                return redirect()->action('InstructorController@getIndex')->with('message', 'Unable to add vehicle')->with('alert-class', 'alert-danger');
+            } //End of if statement
+        } //End of if statement
+    } //End of postAddVehicle method
 
 } //End of class

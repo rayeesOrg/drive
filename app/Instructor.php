@@ -51,7 +51,7 @@ class Instructor extends Model
      */
     public function vehicle()
     {
-        return $this->hasOne('App\Vehicle', 'instructor_id', 'instructor_id');
+        return $this->hasMany('App\Vehicle', 'instructor_id', 'instructor_id');
     }
 
     /**
