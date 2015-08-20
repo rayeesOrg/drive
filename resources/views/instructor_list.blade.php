@@ -57,6 +57,11 @@
           </div>   
     
     <div class="container" id="cnt1">
+      @if (session('message'))
+      <div class="alert {{ Session::get('alert-class', 'alert-success') }}">
+        {{ session('message') }}
+      </div>
+    @endif
       <div class="row feature">
 	@foreach ($instructors as $instructor)
       <div class="col-md-3">

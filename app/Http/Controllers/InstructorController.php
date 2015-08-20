@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Instructor;
+use App\Vehicle;
 
 use Illuminate\Http\Request;
 
+use Validator;
+use Auth;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -37,10 +40,12 @@ class InstructorController extends Controller
         if (isset($id)) {
             //All users who are instructors
             $instructor = User::with('instructor')->has('instructor')->where('active', 1)->where('user_id', $id)->get();
+            $instructor_id = 6;
+            $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
 
             if (count($instructor) > 0) {
                 //Returning the view with $instructors
-                return view('instructor_profile', ['instructor' => $instructor]);
+                return view('instructor_profile', ['instructor' => $instructor, 'vehicles' => $vehicles]);
 
             } else {
                 //If no result, redirect the user to the instructor_list
@@ -77,10 +82,10 @@ class InstructorController extends Controller
         $v = Validator::make($request->all(), 
             [
                 //Validation parameters
-                'reg_no' => 'required|alpha_num|min:2|max:15',
+                'reg_no' => 'required|min:2|max:15',
                 'make' => 'required|max:25',
                 'model' => 'required|max:25',
-                'transmission' => 'required|in:automatic,manual'
+                'transmission' => 'required|in:Automatic,Manual'
             ]);
 
         //Checking validation outcome
@@ -95,16 +100,21 @@ class InstructorController extends Controller
             /**
              * Validation passed
              */
+
+            // $user = Auth::user();
             //Creating the learner record if the user role is learner
             $vehicle = Vehicle::create(
                 [
+                    'instructor_id' => $request->user()->instructor->instructor_id,
                     'reg_no' => $request->reg_no,
                     'make' => $request->make,
                     'model' => $request->model,
                     'transmission' => $request->transmission
                 ]);
 
-            $create = Instructor::find($user->user_id)->learner()->save($vehicle);
+            if ($vehicle) {
+                return redirect()->action('InstructorController@getIndex')->with('message', 'Vehicle added!')->with('alert-class', 'alert-info');
+            }
         }
     }
 
