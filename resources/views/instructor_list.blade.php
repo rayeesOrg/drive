@@ -56,7 +56,7 @@
               </div>
             </nav>
           </div>   
-    
+
           <div class="container" id="container1">
             <div class="row feature">
 	        @foreach ($instructors as $instructor)

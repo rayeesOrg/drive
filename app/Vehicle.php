@@ -17,6 +17,13 @@ class Vehicle extends Model
     protected $primaryKey = 'vehicle_id';
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = ['instructor_id', 'make', 'model', 'reg_no', 'transmission'];
+
+    /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
