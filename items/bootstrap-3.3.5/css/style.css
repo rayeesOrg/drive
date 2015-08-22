@@ -61,3 +61,59 @@ label.star:before {
   content: '\f006';
   font-family: FontAwesome;
 }
+
+.img-rounded {
+  width:80%;
+  margin-left: 10%
+}
+
+.panel-body {
+  background: #d2d6de
+}
+
+div p {
+  font-size: 15px;
+}
+
+div b {
+  font-size: 20px;
+}
+
+.profile .glyphicon-gbp {
+ font-size: 16px;
+ font-weight: bold;
+}
+
+.info{
+     padding: 20px 0;
+    text-align: center;
+ }
+
+.info .hire_me {
+  margin-bottom: 2px;
+}
+ .info-adj{
+     float:left;
+     text-align: left;
+ }
+
+ .rating {
+    min-height: 20px;
+}
+
+
+ .glyphicon { 
+  margin-right:1px;
+}
+
+.rating .glyphicon {
+  font-size: 22px;
+}
+
+
+
+.rating-num { 
+  margin-top:0px;
+  font-size: 54px;
+}
+
