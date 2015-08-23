@@ -12,6 +12,18 @@
   </head>
   <body>
 
+    <div>
+      @if (count($errors) > 0)
+        <div class="alert alert-danger">
+          <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+          </ul>
+        </div>
+      @endif
+    </div>
+
     <form method="POST" action="index">
       {!! csrf_field() !!}
       <div class="stars">
@@ -28,7 +40,7 @@
       </div>
 
       <div class="form-group">
-        <textarea class="form-control" rows="3" name="review"></textarea>
+        <textarea class="form-control" rows="3" name="review">{{ old('review') }}</textarea>
       </div>
 
       
