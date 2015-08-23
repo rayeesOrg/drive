@@ -21,9 +21,8 @@
             <div class="panel-body"> <!-- .pannel-body -->
               <div class="row info">
                 <div class="profile col-md-3">      
-                @if (count($instructor) > 0)
-                  @foreach ($instructor as $profile)                
-                  <img src="http://www.gravatar.com/avatar/{{ md5($profile->email) }}?s=200&d=mm" alt="My avatar" class="img-rounded img-responsive">
+                @if (count($instructor) > 0)              
+                  <img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar" class="img-rounded img-responsive">
                   <hr>
                   <button type="submit" class="hire_me btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Hire Me</button></br>
                   <b class="glyphicon glyphicon-gbp"></b><b>20</b>GBP/hr <i class="glyphicon glyphicon-pencil"></i> 
@@ -33,13 +32,12 @@
                         <b class="glyphicon glyphicon-phone-alt"></b> Tel: 02056345678 </br>
                         <b class="glyphicon glyphicon-envelope"></b> mana_badman@gmail.com </br>
                       </p>
-                  @endforeach
                 @endif  
                 </div><!-- /.col-md-3 -->
                 
                 <div class="col-md-6">
                   <blockquote class="info-adj">
-                    <h3 class="name">{{ $profile->instructor->title }} {{ $profile->instructor->first_name }} {{ $profile->instructor->last_name }}</h3> 
+                    <h3 class="name">{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }}</h3> 
                     <hr><h4>Work Location <i class="glyphicon glyphicon-pencil"></i></h4>
                       <small><cite title="Source Title">London, united Kingdom<span class="glyphicon glyphicon-map-marker"></span></cite></small>
                     <h4>Areas Taught <i class="glyphicon glyphicon-pencil"></i></h4>
