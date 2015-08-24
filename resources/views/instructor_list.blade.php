@@ -93,7 +93,7 @@
 			        @endif
 			              <div class="rating well-sm">
                       <div class="row">
-                        <div class="rating">
+                        <div class="list-rating">
                           <span class="glyphicon glyphicon-star"></span>
                           <span class="glyphicon glyphicon-star"></span>
                           <span class="glyphicon glyphicon-star"></span>
