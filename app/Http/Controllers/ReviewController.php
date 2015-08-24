@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Review;
 use App\Instructor;
-use App\Learner;
 
 use Illuminate\Http\Request;
 
