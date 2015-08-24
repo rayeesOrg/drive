@@ -20,7 +20,7 @@ class ReviewController extends Controller
      *
      * @return Response
      */
-    public function getReview($instructor_id)
+    public function getAddReview($instructor_id)
     {
         $instructor = Instructor::where('Instructor_id', $instructor_id)->first();
 
@@ -33,7 +33,7 @@ class ReviewController extends Controller
      *
      * @return Response
      */
-    public function postReview(Request $request)
+    public function postAddReview(Request $request)
     {
         //validation
         $v = Validator::make($request->all(), 

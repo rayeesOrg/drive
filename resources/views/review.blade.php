@@ -27,7 +27,7 @@
     <div>
       <p>Write a review for: {{ $instructor->first_name }}</p>
 
-      <form method="POST" action="review/{{ $instructor->instructor_id }}">
+      <form method="POST" action="add-review">
         {!! csrf_field() !!}
         <div class="stars">
           <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>

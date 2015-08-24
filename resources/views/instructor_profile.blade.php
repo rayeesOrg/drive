@@ -62,7 +62,7 @@
                           <span class="glyphicon glyphicon-user"></span>Reviews: 5
                         </div>
                         <div>
-                          <a href="{{ URL::action('ReviewController@getReview') }}/{{ $instructor->instructor->instructor_id }}" class="btn btn-default" role="button">Write review</a>
+                          <a href="{{ URL::action('ReviewController@getAddReview') }}/{{ $instructor->instructor->instructor_id }}" class="btn btn-default" role="button">Write review</a>
                         </div>
                     </div>                  
                   </div>
