@@ -14,13 +14,13 @@ class CreateReviewsTable extends Migration
     {
         //To create the appointments table
         Schema::create('reviews', function (Blueprint $table) {
-            $table->increments('review_id');
             $table->integer('learner_id')->length(10)->unsigned();
             $table->integer('instructor_id')->length(10)->unsigned();
             $table->integer('rating')->length(1)->unsigned();
             $table->longText('review');
             $table->timestamps();
 
+            $table->primary(['learner_id', 'instructor_id']);
             $table->foreign('learner_id')->references('learner_id')->on('learners')->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('instructor_id')->references('instructor_id')->on('instructors')->onDelete('cascade')->onUpdate('cascade');
         });

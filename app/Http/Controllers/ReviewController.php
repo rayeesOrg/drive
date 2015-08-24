@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Review;
+use App\Instructor;
+use App\Learner;
+
 use Illuminate\Http\Request;
 
 use Validator;
@@ -16,24 +20,21 @@ class ReviewController extends Controller
      *
      * @return Response
      */
-    public function getIndex()
+    public function getReview($instructor_id)
     {
-        //Loading and returning the reviews view
-        return view('review');
-    }
+        $instructor = Instructor::where('Instructor_id', $instructor_id)->first();
+
+        //Loading and returning the review view
+        return view('review', ['instructor' => $instructor]);
+    } //End of getReview method
 
     /**
-     * Show the form for creating a new resource.
+     * Post the review form.
      *
      * @return Response
      */
-    public function postIndex(Request $request)
+    public function postReview(Request $request)
     {
-        //
-        // var_dump($request);
-        // echo $request->star;
-        // echo $request->review;
-
         //validation
         $v = Validator::make($request->all(), 
             [
@@ -53,10 +54,34 @@ class ReviewController extends Controller
         } else {
             /**
              * Validation passed
-             * Creating the vehicle record
+             * Checking if the learner has already submitted a review for the instructor
              */
-            echo $request->star;
-            echo $request->review;
+            $no_of_review = Review::where('learner_id', $request->user()->learner->learner_id)->where('Instructor_id', $request->instructor_id)->count();
+
+            if ($no_of_review == 0) {
+                //If no review has submitted for the selected instructor by the current user
+                //Create the review
+                $review = Review::create(
+                    [
+                        'learner_id' => $request->user()->learner->learner_id,
+                        'instructor_id' => $request->instructor_id,
+                        'rating' => $request->star,
+                        'review' => $request->review
+                    ]);
+
+                if ($review) {
+                    //If review is created successfully
+                    return redirect()->route('home')->with('message', 'Review added')->with('alert-class', 'alert-success');
+                } else {
+                    //If creating review was unsuccessfull
+                    return redirect()->route('home')->with('message', 'Review could not be added')->with('alert-class', 'alert-danger');
+                } //End of if statement
+                
+            } else {
+                //If review has been submitted previously for the selected instructor by the current user
+                return redirect()->route('home')->with('message', 'You have already submitted a review for this instructor!')->with('alert-class', 'alert-danger');
+
+            } //End of if statement
         } //End of if statement
-    }
-}
+    } //End of postReview method
+} //End of Class
