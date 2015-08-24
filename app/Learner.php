@@ -45,4 +45,12 @@ class Learner extends Model
     {
         return $this->hasMany('App\Appointment', 'learner_id', 'learner_id');
     }
+
+    /**
+     * Get the reviews written by the learner.
+     */
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'learner_id', 'learner_id');
+    }
 }

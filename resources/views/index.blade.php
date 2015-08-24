@@ -13,9 +13,9 @@
 
     <p>Hello, This is index page</p>
 
-    @if (session('status'))
-      <div class="alert alert-success">
-        {{ session('status') }}
+    @if (session('message'))
+      <div class="alert {{ Session::get('alert-class', 'alert-success') }}">
+        {{ session('message') }}
       </div>
     @endif
 

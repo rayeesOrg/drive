@@ -18,3 +18,6 @@ Route::controller('user', 'UserController');
 
 //Routes for all methods in the InstructorController - RESTful controller
 Route::controller('instructor', 'InstructorController');
+
+//Routes for all methods in the InstructorController - RESTful controller
+Route::controller('review', 'ReviewController');

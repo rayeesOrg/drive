@@ -69,4 +69,12 @@ class Instructor extends Model
     {
         return $this->hasMany('App\Availability', 'instructor_id', 'instructor_id');
     }
+
+    /**
+     * Get the reviews of the instructor.
+     */
+    public function reviews()
+    {
+        return $this->hasMany('App\Review', 'instructor_id', 'instructor_id');
+    }
 }
