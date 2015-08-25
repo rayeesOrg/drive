@@ -60,11 +60,11 @@ class UserController extends Controller
             if (Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password'), 'active' => 1]))
             {
                 //Authentication successfull
-                return redirect()->route('home')->with('status', 'Logged in!');
+                return redirect()->intended('/')->with('status', 'Logged in!');
 
             } else {
                 //Authentication failed
-                return redirect()->route('home')->with('status', 'Failed to log in!!'); //Need changing
+                return back()->with('status', 'Failed to log in!!'); //Need changing
             }
         } //End of if statement
     } //End of postLogin method
