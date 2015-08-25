@@ -79,6 +79,9 @@
                             <h4><span class="item-stats-value">346 </span><span class="item-stats-name">Profile Views</span></h4>
                         </li>
                         </div>
+                        <div>
+                          <a href="{{ URL::action('ReviewController@getAddReview') }}/{{ $instructor->instructor->instructor_id }}" class="btn btn-default" role="button">Write review</a>
+                        </div>
                     </div>                  
                   </blockquote>
                 </div> <!-- /.col-xs-12 col-md-3 -->
