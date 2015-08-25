@@ -2,35 +2,35 @@
 REGISTER STYLES
 ==================================================*/
 .regbutton{
-    float: right;
+  float: right;
 }
 /*=======================================
 INSTRUCTOR LIST STYLES
 ==================================================*/
 
 #container1 {            
-     background-color:rgba(215, 212, 212, 0.88);
-     width:90%;
-     margin-bottom:70px;
+  background-color:rgba(215, 212, 212, 0.88);
+  width:90%;
+  margin-bottom:70px;
  }
   
  .feature{
-     padding: 20px 0;
-    text-align: center;
+  padding: 20px 0;
+  text-align: center;
  }
  .feature > div > div{
-    padding: 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: 0.2s;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: 0.2s;
  }
  .feature > div:hover > div{
-    margin-top: -5px;
-    margin-bottom: 5px;
-    border: 1px solid rgb(128, 128, 128);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 5px;
-    background: rgba(232, 215, 215, 0.10);
-    transition: 0.3s;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  border: 1px solid rgb(128, 128, 128);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 5px;
+  background: rgba(232, 215, 215, 0.10);
+  transition: 0.3s;
  }
 
  .list-rating {
@@ -76,13 +76,13 @@ div b {
   margin-bottom: 2px;
 }
  .info-adj{
-     float:left;
-     text-align: left;
+  float:left;
+  text-align: left;
  }
 
  .rating {
-    min-height: 20px;
-    text-align: left;
+  min-height: 20px;
+  text-align: left;
 }
 
  .glyphicon { 
@@ -136,18 +136,29 @@ INSTRUCTOR PROFILE REVIEWS & RATING STYLES
 ==================================================*/
 
 .review-wrapper .panel-body {
-    max-height:650px;
-    overflow:auto;
+  max-height:650px;
+  overflow:auto;
 }
 .review-wrapper .media-list .media img {
-    width:64px;
-    height:64px;
-    border:2px solid #e5e7e8;
-    margin-bottom: 10px;
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+  margin-bottom: 10px;
 }
 .review-wrapper .media-list .media {
-    border-bottom:1px dashed #efefef;
-    margin-bottom:25px;
+  border-bottom:1px dashed #efefef;
+  margin-bottom:25px;
+}
+.r-img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+  margin-top: 35px;
+}
+
+.r-text {
+  width:670px;
+  margin-top:35px;
 }
 .review_rating .glyphicon {
   font-size: 17px;

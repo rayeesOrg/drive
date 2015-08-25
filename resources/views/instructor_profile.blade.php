@@ -105,14 +105,15 @@
                           <input class="star star-1" id="star-1" type="radio" name="star"/>  
                           <label class="star star-1" for="star-1"></label>  
                         </div>
-                        <textarea class="form-control" placeholder="Enter your review here..." rows="3"></textarea>
+                        <a class="pull-left"><img src="" alt="" class="r-img img-circle"></a>
+                        <textarea class="form-control r-text" placeholder="Enter your review here..." rows="3"></textarea>
                         <br />
                           <a href="#" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Post Review</a>
                           <div class="clearfix"></div>
                           <hr />
                           <ul class="media-list">
                             <li class="media">
-                              <a href="#" class="pull-left"><img src="" alt="" class="img-circle"></a>
+                              <a class="pull-left"><img src="" alt="" class="img-circle"></a>
                                 <div class="media-body">
                                   <span class="text-muted pull-right"><small class="text-muted">30 min ago</small></span>
                                   <strong class="text-success">@ Rexona Kumi</strong>
@@ -130,7 +131,7 @@
                             </li> 
 
                             <li class="media">
-                              <a href="#" class="pull-left"><img src="" alt="" class="img-circle"></a>
+                              <a class="pull-left"><img src="" alt="" class="img-circle"></a>
                                 <div class="media-body">
                                   <span class="text-muted pull-right"><small class="text-muted">7 hours ago</small></span>
                                   <strong class="text-success">@ John Doe</strong>
@@ -148,7 +149,7 @@
                             </li>
 
                             <li class="media">
-                              <a href="#" class="pull-left"><img src="" alt="" class="img-circle"></a>
+                              <a class="pull-left"><img src="" alt="" class="img-circle"></a>
                                 <div class="media-body">
                                   <span class="text-muted pull-right"><small class="text-muted">5 days ago</small></span>
                                   <strong class="text-success">@ Madonae Jonisyi</strong>
