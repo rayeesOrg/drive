@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Instructor;
+use App\Review;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -46,11 +47,22 @@ class InstructorController extends Controller
                 //Instructor_id of the instructor
                 $instructor_id = $instructor->instructor->instructor_id;
 
-                //list of vehicles of the instructor
-                $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
+                //All reviews of the instructor
+                $reviews = Instructor::find($instructor_id)->reviews()->orderBy('created_at', 'desc')->paginate(2);
+
+                $reviews->setPath('/drive/instructor/profile/83/url');
+
+                //Counting the number of reviews wrote by the current learner for the instructor
+                // $no_of_review = Review::where('learner_id', Auth::user()->learner->learner_id)->where('Instructor_id', $instructor_id)->count();
+
+                //Counting total number of reviews of the instructor
+                $total_reviews = Instructor::find($instructor_id)->reviews()->count();
+
+                //
+                $avg_rating = Instructor::find($instructor_id)->reviews()->avg('rating');
             
                 //Returning the view with $instructors
-                return view('instructor_profile', ['instructor' => $instructor, 'vehicles' => $vehicles]);
+                return view('instructor_profile', ['instructor' => $instructor, 'reviews' => $reviews, 'total_reviews' => $total_reviews, 'avg_rating' => $avg_rating]);
 
             } else {
                 //If no result, redirect the user to the instructor_list
