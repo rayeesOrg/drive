@@ -79,9 +79,6 @@
                             <h4><span class="item-stats-value">346 </span><span class="item-stats-name">Profile Views</span></h4>
                         </li>
                         </div>
-                        <div>
-                          <a href="{{ URL::action('ReviewController@getAddReview') }}/{{ $instructor->instructor->instructor_id }}" class="btn btn-default" role="button">Write review</a>
-                        </div>
                     </div>                  
                   </blockquote>
                 </div> <!-- /.col-xs-12 col-md-3 -->
@@ -107,7 +104,7 @@
                           <input class="star star-1" id="star-1" type="radio" name="star"/>  
                           <label class="star star-1" for="star-1"></label>  
                         </div>
-                        <a class="pull-left"><img src="" alt="" class="r-img img-circle"></a>
+                        <a class="pull-left"><img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=80&d=mm" alt="" class="r-img img-circle"></a>
                         <textarea class="form-control r-text" placeholder="Enter your review here..." rows="3"></textarea>
                         <br />
                           <a href="#" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Post Review</a>
@@ -115,7 +112,7 @@
                           <hr />
                           <ul class="media-list">
                             <li class="media">
-                              <a class="pull-left"><img src="" alt="" class="img-circle"></a>
+                              <a class="pull-left"><img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=80&d=mm" alt="My avatar" class="img-circle"></a>
                                 <div class="media-body">
                                   <span class="text-muted pull-right"><small class="text-muted">30 min ago</small></span>
                                   <strong class="text-success">@ Rexona Kumi</strong>
