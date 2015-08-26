@@ -26,13 +26,13 @@
                 @if (count($instructor) > 0)              
                   <img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar" class="img-rounded img-responsive">
                   <hr>
-                  <button type="submit" class="hire_me btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Hire Me</button></br>
-                  <b class="glyphicon glyphicon-gbp"></b><b>20</b>GBP/hr <i class="glyphicon glyphicon-pencil"></i> 
+                  <button type="submit" class="hire_me btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Book Lesson</button></br>
+                  <b class="glyphicon glyphicon-gbp"></b><b>20</b> GBP/hr <i class="glyphicon glyphicon-pencil"></i> 
                   <hr><h4>Contact info <i class="glyphicon glyphicon-pencil"></i></h4>
                       <p>
-                        <b class="glyphicon glyphicon-earphone"></b> Mob: 07799654789 </br>
-                        <b class="glyphicon glyphicon-phone-alt"></b> Tel: 02056345678 </br>
-                        <b class="glyphicon glyphicon-envelope"></b> mana_badman@gmail.com </br>
+                        <b class="glyphicon glyphicon-earphone"></b> Mob: {{ $instructor->instructor->mob_no }} </br>
+                        <b class="glyphicon glyphicon-phone-alt"></b> Tel: {{ $instructor->instructor->tel_no }} </br>
+                        <b class="glyphicon glyphicon-envelope"></b> {{ $instructor->email }} </br>
                       </p>
                 @endif  
                 </div><!-- /.col-md-3 -->
@@ -42,9 +42,9 @@
                   <blockquote class="info-adj">
                     <h3 class="name">{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }}</h3> 
                     <hr><h4>Work Location <i class="glyphicon glyphicon-pencil"></i></h4>
-                      <small><cite title="Source Title">London, United Kingdom<span class="glyphicon glyphicon-map-marker"></span></cite></small>
+                      <small><cite title="Source Title">{{ $instructor->instructor->work_location }}<span class="glyphicon glyphicon-map-marker"></span></cite></small>
                     <h4>Areas Taught <i class="glyphicon glyphicon-pencil"></i></h4>
-                      <small><cite title="Areas">Kingston, Tiwckenham, Whitton, Hounslow, Feltham,<span class="glyphicon glyphicon-map-marker"></span></cite></small>
+                      <small><cite title="Areas">{{ $instructor->instructor->all_locations }}<span class="glyphicon glyphicon-map-marker"></span></cite></small>
                     <hr><h4>Additional Info <i class="glyphicon glyphicon-pencil"></i></h4>
                       <p><b class="glyphicon glyphicon-info-sign"></b> <i>Manual & Automatic</i></p>
                     <hr><h4>Special Offers <i class="glyphicon glyphicon-pencil"></i></h4>
@@ -168,9 +168,6 @@
             <!-- ROW END -->
 
             <div class="panel-footer "> <!-- .footer --> 
-              <div class="form-group">
-              Links|Link2|Link3|Link4
-              </div> 
             </div><!-- /.footer -->
         </div> <!-- /.panel panel-primary -->
       </div> <!-- /.row -->

@@ -106,7 +106,8 @@ class UserController extends Controller
                 'password' => 'required|min:6|alpha_num',
                 'password_confirm' => 'required|same:password',
                 'role' => 'required|in:learner,instructor',
-                'all_locations' => 'required_if:role,instructor' //should this be required or not?
+                'all_locations' => 'required_if:role,instructor|max:60', //should this be required or not?
+                'work_location' => 'required_if:role,instructor|max:20'
             ]);
 
         //Checking validation outcome
@@ -168,7 +169,8 @@ class UserController extends Controller
                         'postcode' => $request->postcode,
                         'mob_no' => $request->mob_no,
                         'tel_no' => $request->tel_no,
-                        'all_locations' => $request->all_locations
+                        'all_locations' => $request->all_locations,
+                        'work_location' => $request->work_location
                     ]);
 
                 $create = User::find($user->user_id)->instructor()->save($instructor);

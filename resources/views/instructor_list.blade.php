@@ -89,7 +89,7 @@
       	              <img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar" class="img-circle img-thumbnail">
       	              <h4>{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }}</h4>
       	              <p>               
-      	              Areas taught: {{ $instructor->instructor->all_locations }}</br>
+      	              City: {{ $instructor->instructor->work_location }}</br>
       	              Mob: {{ $instructor->instructor->mob_no }}</br>
       	              @if($instructor->instructor->tel_no != NULL)
       	              Tel: {{ $instructor->instructor->tel_no }} 
