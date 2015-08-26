@@ -55,7 +55,8 @@
                 <div class="col-xs-12 col-md-3 ">
                   <blockquote class="rate well-sm">
                     <div class="row">
-                      <h1 class="rating-num">4.0</h1>
+                      <!-- Rounding the average rating to 1 d.p. -->
+                      <h1 class="rating-num">{{ round($avg_rating, 1) }}</h1>
                         <div class="rating">
                           <span class="glyphicon glyphicon-star"></span>
                           <span class="glyphicon glyphicon-star"></span>
@@ -64,7 +65,7 @@
                           <span class="glyphicon glyphicon-star-empty"></span>
                         </div>
                         <div class="no-of-reviews">
-                          <span class="glyphicon glyphicon-user"></span> 34 Reviews
+                          <span class="glyphicon glyphicon-user"></span> {{ $total_reviews }} Reviews
                         </div>
                         <hr>
                         <div class="stats">
@@ -92,51 +93,55 @@
                   <div class="panel panel-primary">
                     <div class="panel-heading"><h5>Recent Reviews</h5></div>
                       <div class="panel-body">
-                        <div class="stars">  
-                          <input class="star star-5" id="star-5" type="radio" name="star"/>  
-                          <label class="star star-5" for="star-5"></label>  
-                          <input class="star star-4" id="star-4" type="radio" name="star"/>  
-                          <label class="star star-4" for="star-4"></label>  
-                          <input class="star star-3" id="star-3" type="radio" name="star"/>  
-                          <label class="star star-3" for="star-3"></label>  
-                          <input class="star star-2" id="star-2" type="radio" name="star"/>  
-                          <label class="star star-2" for="star-2"></label>  
-                          <input class="star star-1" id="star-1" type="radio" name="star"/>  
-                          <label class="star star-1" for="star-1"></label>  
+                        <!-- Displays the form errors -->
+                        <div>
+                          @if (count($errors) > 0)
+                            <div class="alert alert-danger">
+                              <ul>
+                                @foreach ($errors->all() as $error)
+                                  <li>{{ $error }}</li>
+                                @endforeach
+                              </ul>
+                            </div>
+                          @endif
                         </div>
-                        <a class="pull-left"><img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=80&d=mm" alt="" class="r-img img-circle"></a>
-                        <textarea class="form-control r-text" placeholder="Enter your review here..." rows="3"></textarea>
-                        <br />
-                          <a href="#" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Post Review</a>
+                        <!-- Checking if the current user is authenticated and a learner -->
+                        @if (Auth::check() && Auth::user()->role === 'learner')
+                          <!-- Review form -->
+                          <form method="POST" action="/drive/review/add-review">
+                            {!! csrf_field() !!}
+                            <div class="stars">  
+                              <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>  
+                              <label class="star star-5" for="star-5"></label>  
+                              <input class="star star-4" id="star-4" type="radio" name="star" value="4"/>  
+                              <label class="star star-4" for="star-4"></label>  
+                              <input class="star star-3" id="star-3" type="radio" name="star" value="3"/>  
+                              <label class="star star-3" for="star-3"></label>  
+                              <input class="star star-2" id="star-2" type="radio" name="star" value="2"/>  
+                              <label class="star star-2" for="star-2"></label>  
+                              <input class="star star-1" id="star-1" type="radio" name="star" value="1"/>  
+                              <label class="star star-1" for="star-1"></label>  
+                            </div>
+                            <a class="pull-left"><img src="http://www.gravatar.com/avatar/{{ md5(auth()->user()->email) }}?s=80&d=mm" alt="" class="r-img img-circle"></a>
+                            <textarea class="form-control r-text" placeholder="Enter your review here..." rows="3" name="review">{{ old('review') }}</textarea>
+                            <!-- Hidden form field for instructor_id -->
+                            <input type="hidden" name="instructor_id" value="{{ $instructor->instructor->instructor_id }}">
+                            <br />
+                            <button type="submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-thumbs-up"></span> Post Review</button>
+                          </form>
                           <div class="clearfix"></div>
                           <hr />
-                          <ul class="media-list">
+                        @endif
+                        <ul class="media-list">
+                          @foreach ($reviews as $review)
                             <li class="media">
-                              <a class="pull-left"><img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=80&d=mm" alt="My avatar" class="img-circle"></a>
+                              <a class="pull-left"><img src="http://www.gravatar.com/avatar/{{ md5($review->learner->user->email) }}?s=80&d=mm" alt="My avatar" class="img-circle"></a>
                                 <div class="media-body">
-                                  <span class="text-muted pull-right"><small class="text-muted">30 min ago</small></span>
-                                  <strong class="text-success">@ Rexona Kumi</strong>
-                                  <p><i>&quot; &nbsp;Very good instructor. I rate him 4/5&nbsp; &quot;</i></p>
+                                  <span class="text-muted pull-right"><small class="text-muted">{{ $review->created_at }}</small></span>
+                                  <strong class="text-success">{{ $review->learner->first_name }} {{ $review->learner->last_name }}</strong>
+                                  <p><i>&quot; &nbsp;{{ $review->review }}&nbsp; &quot;</i></p>
                                   <div class="review_rating">
-                                    <span class="data-no">4.0</span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                  </div>
-                                  <br />
-                                </div>
-                            </li> 
-
-                            <li class="media">
-                              <a class="pull-left"><img src="" alt="" class="img-circle"></a>
-                                <div class="media-body">
-                                  <span class="text-muted pull-right"><small class="text-muted">7 hours ago</small></span>
-                                  <strong class="text-success">@ John Doe</strong>
-                                  <p><i>&quot; &nbsp;Great job done. I passed my test in 2 weeks&nbsp; &quot;</i></p>
-                                  <div class="review_rating">
-                                    <span class="data-no">4.0</span>
+                                    <span class="data-no">{{ $review->rating }}.0</span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
                                     <span class="glyphicon glyphicon-star"></span>
@@ -146,26 +151,11 @@
                                   <br />
                                 </div>
                             </li>
-
-                            <li class="media">
-                              <a class="pull-left"><img src="" alt="" class="img-circle"></a>
-                                <div class="media-body">
-                                  <span class="text-muted pull-right"><small class="text-muted">5 days ago</small></span>
-                                  <strong class="text-success">@ Madonae Jonisyi</strong>
-                                  <p><i>&quot; &nbsp;He is on budget and time. I would recommend him to all&nbsp; &quot;</i></p>
-                                  <div class="review_rating">
-                                    <span class="data-no">4.0</span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </div>
-                                <br />
-                                </div>
-                            </li>
-                          </ul>
-                            <span class="text-danger"> <a href="#">View More Reviews</a></span>
+                          @endforeach
+                        </ul>
+                        <!-- Pagination links -->
+                        {!! $reviews->render() !!}
+                            <!-- <span class="text-danger"> <a href="#">View More Reviews</a></span> -->
                       </div>
                       <!-- PANEL BODY END--> 
                     </div>
