@@ -58,11 +58,9 @@
                       <!-- Rounding the average rating to 1 d.p. -->
                       <h1 class="rating-num">{{ round($avg_rating, 1) }}</h1>
                         <div class="rating">
-                          <span class="glyphicon glyphicon-star"></span>
-                          <span class="glyphicon glyphicon-star"></span>
-                          <span class="glyphicon glyphicon-star"></span>
-                          <span class="glyphicon glyphicon-star"></span>
-                          <span class="glyphicon glyphicon-star-empty"></span>
+                          <span class="stars2" title="{{ round($avg_rating, 1) }}">
+                            <span class="stars1" style="width:{{$avg_rating/5*100}}%;"/>
+                          </span>
                         </div>
                         <div class="no-of-reviews">
                           <span class="glyphicon glyphicon-user"></span> {{ $total_reviews }} Reviews
@@ -142,11 +140,9 @@
                                   <p><i>&quot; &nbsp;{{ $review->review }}&nbsp; &quot;</i></p>
                                   <div class="review_rating">
                                     <span class="data-no">{{ $review->rating }}.0</span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="stars2" title="{{ round($review->rating, 1) }}">
+                                      <span class="stars1" style="width:{{$review->rating/5*100}}%;"/>
+                                    </span>
                                   </div>
                                   <br />
                                 </div>
@@ -174,6 +170,7 @@
     </div> <!-- /.container -->
     
     <!-- REQUIRED SCRIPTS FILES -->
+    </script>
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
   </body>
