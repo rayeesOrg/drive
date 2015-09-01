@@ -153,63 +153,41 @@ class InstructorController extends Controller
      */
     public function postAddImage(Request $request)
     {
-        //validation
-        $v = Validator::make($request->all(), 
-            [
-                //Validation parameters
-                'images' => 'required|image'
-            ]);
-
-        //getting all of the post data
-        // $files = $request->images[0];
-        $file = $request->file('images');
+        $images = $request->file('images');
         //Counting uploaded images
-        $file_count = count($file);
+        $file_count = count($images);
         //start count how many uploaded
         $uploadcount = 0;
 
-        // $extension = $files->getClientOriginalExtension();
+        foreach ($images as $image) {
+            //validation
+            $v = Validator::make(array('image' => $image), 
+                [
+                    //Validation parameters
+                    'image' => 'required|image'
+                ]);
 
-        // dd($request->file('images')->getClientOriginalExtension());
-
-        if ($v->fails()) {
-            echo "failed";
-        } else {
-            if ($request->hasFile('images')) {
-                echo "Has file";
-                dd($file);
+            if ($v->fails()) {
+                return back()->withErrors($v)->withInput();
             } else {
-                echo "No file";
+                //Directory to upload the images to
+                $destinationPath = 'items/user_uploads';
+                //\creating a random name
+                $random_name = str_random(10);
+                //Image extension
+                $extension = $image->getClientOriginalExtension();
+                //Assigning a random filename
+                $filename = $random_name.'.'.$extension;;
+                $upload_success = $image->move($destinationPath, $filename);
+                $uploadcount ++;
             }
         }
 
-        
-        
+        if ($uploadcount == $file_count) {
+            echo "Fully uploaded";
+        } else {
+            return back()->withErrors($v)->withInput();
+        }
 
     } //End of postAddImage method
-
 } //End of class
-
-
-/*$extension = $request->images->getClientOriginalExtension();
-
-        print_r($extension);
-
-        if ($file !== null) {
-            echo $file->getClientOriginalExtension();  
-        }*/
-
-        //Checking validation outcome
-        // if ($v->fails()) {
-        //     /**
-        //      * Validation failed
-        //      * Redirecting back to the page with errors and inputs
-        //      */
-        //     return back()->withErrors($v)->withInput();
-        // } else {
-        //     // print_r($files);
-        //     // print_r($file_count);
-        //     if ($files !== null) {
-        //         echo $files[0]->getClientOriginalExtension();  
-        //     }
-        // }

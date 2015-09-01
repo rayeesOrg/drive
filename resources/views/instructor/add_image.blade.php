@@ -26,7 +26,7 @@
 
       <div class="form-group">
           <label for="">Images</label>
-          <input type="file" name="images">
+          <input type="file" name="images[]" multiple>
       </div>
       <div>
           <button type="submit">Add</button>
