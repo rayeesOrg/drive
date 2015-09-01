@@ -160,6 +160,69 @@
                 <!-- REVIEW WRAPPER END -->
               </div>
               <!-- col-xs-12 col-md-8 END -->
+              
+
+              <div class="col-xs-12 col-md-4">               
+                <div id="myCarousel" class="carousel vertical slide" >
+                  <ol class="carousel-indicators-top">
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">▲</a>
+                  </ol>
+                  <ol class="carousel-indicators">
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">▼</a>
+                  </ol>     
+                    <!-- Carousel items -->
+                    <div class="carousel-inner">
+                      <div class="item active">
+                        <div class="row-fluid">
+                          <table>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="http://www.reddrivingschool.com/wp-content/uploads/Vauxhall-Ampera-Red-Driving-School-car.jpg" alt="Image"></a></div></td>
+                          </tr>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="http://www.reddrivingschool.com/wp-content/uploads/Nina-Nesbitt-learning-to-drive.jpg" alt="Image"></a></div></td>
+                          </tr>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="http://www.elitedrivingschool.net/wp-content/uploads/2013/03/Car-driving-lessons-Hannah-Charlton.jpg" alt="Image"></a></div></td>
+                          </tr>
+                          </table>
+                        </div><!--/row-fluid-->
+                      </div><!--/item-->
+                     
+                      <div class="item">
+                        <div class="row-fluid">
+                          <table>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="" alt="Image"></a></div></td>
+                          </tr>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="" alt="Image"></a></div></td>
+                          </tr>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="http://topwalls.net/wp-content/uploads/2012/01/Nature-sea-scenery-travel-photography-image.jpg" alt="Image"></a></div></td>
+                          </tr>
+                          </table>
+                        </div><!--/row-fluid-->
+                      </div><!--/item-->
+                     
+                      <div class="item">
+                        <div class="row-fluid">
+                          <table>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="" alt="Image"></a></div></td>
+                          </tr>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="" alt="Image"></a></div></td>
+                          </tr>
+                          <tr>
+                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="http://www.reddrivingschool.com/wp-content/uploads/Vauxhall-Ampera-Red-Driving-School-car.jpg" alt="Image"></a></div></td>
+                          </tr>
+                          </table>
+                        </div><!--/row-fluid-->
+                      </div><!--/item-->
+                      <br />
+                    </div><!--/carousel-inner-->        
+                </div><!--/myCarousel-->     
+              </div><!--/col-xs-12 col-md-4--> 
             </div>
             <!-- ROW END -->
 
@@ -173,6 +236,12 @@
     </script>
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-transition.js"></script> 
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/script.js"></script>
+
   </body>
 </html>
 
