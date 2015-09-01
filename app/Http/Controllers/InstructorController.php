@@ -86,7 +86,7 @@ class InstructorController extends Controller
     {
         //Returning the view
         return view('add_vehicle');
-    }
+    } //End of getAddVehicle method
 
     /**
      * Post the add vehicle form.
@@ -135,4 +135,81 @@ class InstructorController extends Controller
         } //End of if statement
     } //End of postAddVehicle method
 
+    /**
+     * Display the add image form.
+     *
+     * @return Response
+     */
+    public function getAddImage()
+    {
+        //Returning the view
+        return view('instructor.add_image');
+    } //End of getAddImage method
+
+    /**
+     * Post the add image form.
+     *
+     * @return Response
+     */
+    public function postAddImage(Request $request)
+    {
+        //validation
+        $v = Validator::make($request->all(), 
+            [
+                //Validation parameters
+                'images' => 'required|image'
+            ]);
+
+        //getting all of the post data
+        // $files = $request->images[0];
+        $file = $request->file('images');
+        //Counting uploaded images
+        $file_count = count($file);
+        //start count how many uploaded
+        $uploadcount = 0;
+
+        // $extension = $files->getClientOriginalExtension();
+
+        // dd($request->file('images')->getClientOriginalExtension());
+
+        if ($v->fails()) {
+            echo "failed";
+        } else {
+            if ($request->hasFile('images')) {
+                echo "Has file";
+                dd($file);
+            } else {
+                echo "No file";
+            }
+        }
+
+        
+        
+
+    } //End of postAddImage method
+
 } //End of class
+
+
+/*$extension = $request->images->getClientOriginalExtension();
+
+        print_r($extension);
+
+        if ($file !== null) {
+            echo $file->getClientOriginalExtension();  
+        }*/
+
+        //Checking validation outcome
+        // if ($v->fails()) {
+        //     /**
+        //      * Validation failed
+        //      * Redirecting back to the page with errors and inputs
+        //      */
+        //     return back()->withErrors($v)->withInput();
+        // } else {
+        //     // print_r($files);
+        //     // print_r($file_count);
+        //     if ($files !== null) {
+        //         echo $files[0]->getClientOriginalExtension();  
+        //     }
+        // }
