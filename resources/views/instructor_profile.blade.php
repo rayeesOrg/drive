@@ -179,7 +179,7 @@
                         <table>
                         @foreach ($item as $image)
                           <tr>
-                          <td><div class="span3"><a href="#x" class="thumbnail"><img src="/drive/items/user_uploads/{{ $image->name }}" alt="Image"></a></div></td>
+                          <td><div class="span3"><a href="#" class="thumbnail"><img src="/drive/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
                           </tr>
                         @endforeach
                         </table>
