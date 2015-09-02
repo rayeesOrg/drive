@@ -7,6 +7,7 @@ use App\Instructor;
 use App\Review;
 use App\Image;
 use App\Vehicle;
+use Storage;
 
 use Illuminate\Http\Request;
 
@@ -182,7 +183,9 @@ class InstructorController extends Controller
                 $extension = $image->getClientOriginalExtension();
                 //Assigning a random filename
                 $filename = $random_name.'.'.$extension;
-                $upload_success = $image->move($destinationPath, $filename);
+                // $upload_success = $image->move($destinationPath, $filename);
+                // $upload_success = Storage::disk('local')->put($image, $filename);
+                $upload_success = Storage::disk('local')->put($filename, file_get_contents($image));
 
                 if ($upload_success) {
                     $image = Image::create(
@@ -200,6 +203,32 @@ class InstructorController extends Controller
         } else {
             return back()->withErrors($v)->withInput();
         }
-
     } //End of postAddImage method
+
+    /**
+     * Get the add image form.
+     *
+     * @return Response
+     */
+    public function getDeleteImage($id)
+    {
+        //Finding the image with the given id
+        $image = Image::find($id);
+
+        //Deleting the image record from the database
+        $delete_record = $image->delete();
+
+        if ($delete_record) {
+            //Deleting the file if record is deleted successfully
+            $delete_file = Storage::delete($image->name);
+            
+            if ($delete_file) {
+                //If file is deleted
+                echo "Deleted";
+            }
+        } else {
+            echo "Delete failed";
+        }
+    } //End of getDeleteImage method
+
 } //End of class
