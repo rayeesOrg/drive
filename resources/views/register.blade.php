@@ -166,9 +166,16 @@
                           <input type="text" class="form-control" name="role" id="inputrole" value="{{ old('role') }}" placeholder="Enter Telphone No...">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                      <label for="work_location" class="col-md-4 control-label">Work Location</label>
+                        <div class="col-md-8">
+                          <input type="text" class="form-control" name="work_location" id="work_location" value="{{ old('work_location') }}" placeholder="Enter City name">
+                        </div>
+                    </div>
                     
                     <div class="form-group">
-                      <label for="inputall_locations" class="col-md-4 control-label">Work Locations</label>
+                      <label for="inputall_locations" class="col-md-4 control-label">Areas Taught</label>
                         <div class="col-md-8">
                           <textarea class="form-control" name="all_locations" id="inputall_locations" rows="3" value="{{ old('all_locations') }}"></textarea>  
                         </div>

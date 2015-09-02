@@ -212,6 +212,17 @@ label.star:before {
   font-family: FontAwesome;
 }
 
+span.stars2, span.stars2 span.stars1 {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
+}
+
+span.stars2 span.stars1 {
+    background-position: 0 0;
+  }
+
 /* ================= PROFILE SLIDER ==================== */
 
 .carousel-indicators .active {
