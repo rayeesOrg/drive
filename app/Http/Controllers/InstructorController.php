@@ -223,6 +223,7 @@ class InstructorController extends Controller
             $delete_file = Storage::delete($image->name);
             
             if ($delete_file) {
+                //If file is deleted
                 echo "Deleted";
             }
         } else {
