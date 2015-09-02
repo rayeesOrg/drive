@@ -159,7 +159,10 @@
               <!-- REVIEW WRAPPER END -->
             </div>
             <!-- col-xs-12 col-md-8 END -->
-            
+
+            @if(count($images) === 0)
+              {{-- Empty space if there are no images for the instructor--}}
+            @else
             <div class="col-xs-12 col-md-4">               
               <div id="myCarousel" class="carousel vertical slide" >
                 <ol class="carousel-indicators-top">
@@ -187,6 +190,7 @@
                   </div><!--/carousel-inner-->        
               </div><!--/myCarousel-->     
             </div><!--/col-xs-12 col-md-4--> 
+            @endif
           </div>
           <!-- ROW END -->
 
