@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Instructor;
 use App\Review;
+use App\Image;
 use App\Vehicle;
 
 use Illuminate\Http\Request;
@@ -58,11 +59,14 @@ class InstructorController extends Controller
                 //Counting total number of reviews of the instructor
                 $total_reviews = Instructor::find($instructor_id)->reviews()->count();
 
-                //
+                //Calculating the average rating
                 $avg_rating = Instructor::find($instructor_id)->reviews()->avg('rating');
+
+                //
+                $images = Image::where('instructor_id', $instructor_id)->get();
             
                 //Returning the view with $instructors
-                return view('instructor_profile', ['instructor' => $instructor, 'reviews' => $reviews, 'total_reviews' => $total_reviews, 'avg_rating' => $avg_rating]);
+                return view('instructor_profile', ['instructor' => $instructor, 'reviews' => $reviews, 'total_reviews' => $total_reviews, 'avg_rating' => $avg_rating, 'images' => $images]);
 
             } else {
                 //If no result, redirect the user to the instructor_list
@@ -173,13 +177,21 @@ class InstructorController extends Controller
                 //Directory to upload the images to
                 $destinationPath = 'items/user_uploads';
                 //\creating a random name
-                $random_name = str_random(10);
+                $random_name = str_random(9);
                 //Image extension
                 $extension = $image->getClientOriginalExtension();
                 //Assigning a random filename
-                $filename = $random_name.'.'.$extension;;
+                $filename = $random_name.'.'.$extension;
                 $upload_success = $image->move($destinationPath, $filename);
-                $uploadcount ++;
+
+                if ($upload_success) {
+                    $image = Image::create(
+                        [
+                            'instructor_id' => $request->user()->instructor->instructor_id,
+                            'name' => $filename
+                        ]);
+                    $uploadcount ++;
+                }
             }
         }
 

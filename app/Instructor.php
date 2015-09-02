@@ -77,4 +77,12 @@ class Instructor extends Model
     {
         return $this->hasMany('App\Review', 'instructor_id', 'instructor_id');
     }
+
+    /**
+     * Get the images of the instructor.
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Image', 'instructor_id', 'instructor_id');
+    }
 }
