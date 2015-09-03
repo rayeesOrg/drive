@@ -2,15 +2,19 @@
 
 namespace App\Policies;
 
+use App\Image;
+use App\User;
+
 class ImagePolicy
 {
     /**
-     * Create a new policy instance.
+     * Determine if the given image can be deleted by the user.
      *
      * @return void
      */
-    public function __construct()
+    public function destroy(User $user, Image $image)
     {
         //
+        return $user->instructor->instructor_id === $image->instructor_id;
     }
 }

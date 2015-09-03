@@ -219,6 +219,9 @@ class InstructorController extends Controller
         //Finding the image with the given id
         $image = Image::find($id);
 
+        //Authorization check using ImagePolicy
+        $this->authorize('destroy', $image);
+
         //Deleting the image record from the database
         $delete_record = $image->delete();
 
