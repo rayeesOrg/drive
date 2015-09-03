@@ -18,6 +18,13 @@ use App\Http\Controllers\Controller;
 
 class InstructorController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware('instructor', ['only' => ['getAddImage', 'postAddImage', 'getDeleteImage']]);
+    }
+
     /**
      * Display a listing of all the instructors.
      *
