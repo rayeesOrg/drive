@@ -1,42 +1,192 @@
+/*=======================================
+REGISTER STYLES
+==================================================*/
 .regbutton{
-    float: right;
+  float: right;
 }
+/*=======================================
+INSTRUCTOR LIST STYLES
+==================================================*/
 
 #container1 {            
-     background-color:rgba(215, 212, 212, 0.88);
-     width:90%;
-     margin-bottom:70px;
+  background-color:rgba(215, 212, 212, 0.88);
+  width:90%;
+  margin-bottom:70px;
  }
   
  .feature{
-     padding: 20px 0;
-    text-align: center;
+  padding: 20px 0;
+  text-align: center;
  }
  .feature > div > div{
-    padding: 10px;
-    border: 1px solid transparent;
-    border-radius: 4px;
-    transition: 0.2s;
+  padding: 10px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  transition: 0.2s;
  }
  .feature > div:hover > div{
-    margin-top: -5px;
-    margin-bottom: 5px;
-    border: 1px solid rgb(128, 128, 128);
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 5px;
-    background: rgba(232, 215, 215, 0.10);
-    transition: 0.3s;
+  margin-top: -5px;
+  margin-bottom: 5px;
+  border: 1px solid rgb(128, 128, 128);
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 5px 5px;
+  background: rgba(232, 215, 215, 0.10);
+  transition: 0.3s;
  }
 
+ .list-rating {
+  text-align: center;
+ }
+/*======================================
+INSTRUCTOR PROFILE CONTENT STYLE
+==================================================*/
+.img-rounded {
+  width:80%;
+  margin-left: 10%
+}
+
+.panel-primary {
+  background: #d2d6de;
+  border-color: transparent;
+}
+
+div p {
+  font-size: 15px;
+}
+
+div b {
+  font-size: 20px;
+}
+
+
+.profile .glyphicon-gbp {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 2px;
+}
+
+.info{
+  padding: 20px 0;
+  text-align: center;
+ }
+
+.info .contact-info {
+  margin-left: 20px;
+}
+
+.info .hire_me {
+  margin-bottom: 2px;
+}
+ .info-adj{
+  float:left;
+  text-align: left;
+ }
+
+ .rating {
+  min-height: 20px;
+  text-align: left;
+}
+
+ .glyphicon { 
+  margin-right:1px;
+}
+
+.rating .glyphicon {
+  font-size: 22px;
+  color: #FD4;
+  text-shadow: 0 0 20px #952;
+}
+
+.no-of-reviews {
+  text-align: left;
+  font-family:serif;
+}
+
+.rating .glyphicon-user {
+  color:black;
+  font-size: 15px;
+  text-shadow:none;
+}
+
+.rating-num { 
+  margin-top:0px;
+  font-size: 54px;
+  text-align: left;
+}
+
+.stats {
+  list-style: none;
+  text-align: left;
+}
+
+.stats .item-stats-name {
+  padding-left: 30px;
+  vertical-align: middle;
+  font-family:serif;
+}
+
+.stats .item-stats-value {
+  color: green;
+}
+
+.rate {
+  padding-left: 30px;
+}
+
+/*======================================
+INSTRUCTOR PROFILE REVIEWS & RATING STYLES
+==================================================*/
+
+
+.review-wrapper .panel-primary .panel-heading {
+  margin-right:20px;
+}
+.review-wrapper .panel-body {
+  max-height:650px;
+  overflow:auto;
+}
+.review-wrapper .media-list .media img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+  margin-bottom: 10px;
+}
+.review-wrapper .media-list .media {
+  border-bottom:1px dashed #efefef;
+  margin-bottom:25px;
+}
+.r-img {
+  width:64px;
+  height:64px;
+  border:2px solid #e5e7e8;
+  margin-top: 35px;
+}
+
+.r-text {
+  width:670px;
+  margin-top:35px;
+}
+.review_rating .glyphicon {
+  font-size: 17px;
+  color: #FD4;
+  text-shadow: 0 0 20px #952;
+}
+.data-no {
+  font-size: 15px;
+  color: white;
+  border-style:solid;
+  border-color: #FD4;
+  background-color:#FD4;
+}
 .stars {
   width: 150px;
-  display: inline-block;
+  float: right;
 }
 
 input.star { display: none; }
 
 label.star {
   float:right;
-  padding: 5px;
+  padding: 2px;
   font-size: 20px;
   color: #444;
   transition: all .2s;
@@ -49,7 +199,7 @@ input.star:checked ~ label.star:before {
 }
 
 input.star-5:checked ~ label.star:before {
-  color: #FE7;
+  color: #FD4;
   text-shadow: 0 0 20px #952;
 }
 
@@ -62,58 +212,124 @@ label.star:before {
   font-family: FontAwesome;
 }
 
-.img-rounded {
-  width:80%;
-  margin-left: 10%
+span.stars2, span.stars2 span.stars1 {
+    display: block;
+    background: url(stars.png) 0 -16px repeat-x;
+    width: 80px;
+    height: 16px;
 }
 
-.panel-body {
+span.stars2 span.stars1 {
+    background-position: 0 0;
+  }
+
+/* ================= PROFILE SLIDER ==================== */
+
+.carousel-indicators .active {
+background-color: #333 !important;
+}
+
+.carousel-control {
+position: absolute;
+top: 7% !important;
+left: 15px;
+width: 40px;
+height: 40px;
+margin-top: -38px !important;
+font-size: 30px !important;
+font-weight: 100;
+line-height: 33px !important;
+color: #FFF;
+text-align: center;
+background: #222;
+border: 3px solid #FFF;
+transition: all .2s;
+-webkit-border-radius: 23px;
+-moz-border-radius: 23px;
+border-radius: 23px;
+opacity: 0.5;
+filter: alpha(opacity=50);
+}
+
+.carousel {
+  margin-bottom: 0;
+  padding: 50px 40px 50px 70px;
   background: #d2d6de
 }
 
-div p {
-  font-size: 15px;
+.carousel-control {
+  left: 150px;
+}
+.carousel-control.right {
+  left: 75px;
 }
 
-div b {
-  font-size: 20px;
+/*For top Indicator*/
+
+.carousel-indicators-top {
+  right: 50%;
+  top: auto;
+  bottom: 0px;
+  margin-right: -19px;
 }
 
-.profile .glyphicon-gbp {
- font-size: 16px;
- font-weight: bold;
+.carousel-indicators-top li {
+  background: #333333;
 }
 
-.info{
-     padding: 20px 0;
-    text-align: center;
- }
-
-.info .hire_me {
-  margin-bottom: 2px;
-}
- .info-adj{
-     float:left;
-     text-align: left;
- }
-
- .rating {
-    min-height: 20px;
+.carousel-indicators-top .active {
+background: #333333;
 }
 
+ /* vertical start*/
 
- .glyphicon { 
-  margin-right:1px;
+.vertical .carousel-inner {
+  height: 100%;
 }
 
-.rating .glyphicon {
-  font-size: 22px;
+.carousel.vertical .item {
+  -webkit-transition: 0.6s ease-in-out top;
+     -moz-transition: 0.6s ease-in-out top;
+      -ms-transition: 0.6s ease-in-out top;
+       -o-transition: 0.6s ease-in-out top;
+          transition: 0.6s ease-in-out top;
 }
 
-
-
-.rating-num { 
-  margin-top:0px;
-  font-size: 54px;
+.carousel.vertical .active {
+  top: 0;
 }
 
+.carousel.vertical .next {
+  top: 100%;
+}
+
+.carousel.vertical .prev {
+  top: -100%;
+}
+
+.carousel.vertical .next.left {
+  top: 0;
+}
+.carousel.vertical .prev.right {
+  top: 0;
+}
+
+.carousel.vertical .active.left {
+  top: -100%;
+}
+
+.carousel.vertical .active.right {
+  top: 100%;
+}
+
+.carousel.vertical .item {
+    left: 0;
+}​
+.span3 {
+  width: 100px;
+}
+.thumbnail img {
+  max-width:100%; 
+  width:200px;
+  height: 150px;
+}

@@ -70,6 +70,11 @@ class ReviewController extends Controller
 
                 if ($review) {
                     //If review is created successfully
+                    //Send an e-mail to the instructor
+                    
+                    /*Write an e-mail function here*/
+
+                    //Redirect the user
                     return redirect()->route('home')->with('message', 'Review added')->with('alert-class', 'alert-success');
                 } else {
                     //If creating review was unsuccessfull

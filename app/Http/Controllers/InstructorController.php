@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Instructor;
+use App\Review;
+use App\Image;
 use App\Vehicle;
+use Storage;
 
 use Illuminate\Http\Request;
 
@@ -46,11 +49,25 @@ class InstructorController extends Controller
                 //Instructor_id of the instructor
                 $instructor_id = $instructor->instructor->instructor_id;
 
-                //list of vehicles of the instructor
-                $vehicles = Vehicle::where('instructor_id', $instructor_id)->get();
+                //All reviews of the instructor
+                $reviews = Instructor::find($instructor_id)->reviews()->orderBy('created_at', 'desc')->paginate(2);
+
+                $reviews->setPath('/drive/instructor/profile/83/url');
+
+                //Counting the number of reviews wrote by the current learner for the instructor
+                // $no_of_review = Review::where('learner_id', Auth::user()->learner->learner_id)->where('Instructor_id', $instructor_id)->count();
+
+                //Counting total number of reviews of the instructor
+                $total_reviews = Instructor::find($instructor_id)->reviews()->count();
+
+                //Calculating the average rating
+                $avg_rating = Instructor::find($instructor_id)->reviews()->avg('rating');
+
+                //
+                $images = Image::where('instructor_id', $instructor_id)->get();
             
                 //Returning the view with $instructors
-                return view('instructor_profile', ['instructor' => $instructor, 'vehicles' => $vehicles]);
+                return view('instructor_profile', ['instructor' => $instructor, 'reviews' => $reviews, 'total_reviews' => $total_reviews, 'avg_rating' => $avg_rating, 'images' => $images]);
 
             } else {
                 //If no result, redirect the user to the instructor_list
@@ -74,7 +91,7 @@ class InstructorController extends Controller
     {
         //Returning the view
         return view('add_vehicle');
-    }
+    } //End of getAddVehicle method
 
     /**
      * Post the add vehicle form.
@@ -122,5 +139,96 @@ class InstructorController extends Controller
             } //End of if statement
         } //End of if statement
     } //End of postAddVehicle method
+
+    /**
+     * Display the add image form.
+     *
+     * @return Response
+     */
+    public function getAddImage()
+    {
+        //Returning the view
+        return view('instructor.add_image');
+    } //End of getAddImage method
+
+    /**
+     * Post the add image form.
+     *
+     * @return Response
+     */
+    public function postAddImage(Request $request)
+    {
+        $images = $request->file('images');
+        //Counting uploaded images
+        $file_count = count($images);
+        //start count how many uploaded
+        $uploadcount = 0;
+
+        foreach ($images as $image) {
+            //validation
+            $v = Validator::make(array('image' => $image), 
+                [
+                    //Validation parameters
+                    'image' => 'required|image'
+                ]);
+
+            if ($v->fails()) {
+                return back()->withErrors($v)->withInput();
+            } else {
+                //Directory to upload the images to
+                $destinationPath = 'items/user_uploads';
+                //\creating a random name
+                $random_name = str_random(9);
+                //Image extension
+                $extension = $image->getClientOriginalExtension();
+                //Assigning a random filename
+                $filename = $random_name.'.'.$extension;
+                // $upload_success = $image->move($destinationPath, $filename);
+                // $upload_success = Storage::disk('local')->put($image, $filename);
+                $upload_success = Storage::disk('local')->put($filename, file_get_contents($image));
+
+                if ($upload_success) {
+                    $image = Image::create(
+                        [
+                            'instructor_id' => $request->user()->instructor->instructor_id,
+                            'name' => $filename
+                        ]);
+                    $uploadcount ++;
+                }
+            }
+        }
+
+        if ($uploadcount == $file_count) {
+            echo "Fully uploaded";
+        } else {
+            return back()->withErrors($v)->withInput();
+        }
+    } //End of postAddImage method
+
+    /**
+     * Get the add image form.
+     *
+     * @return Response
+     */
+    public function getDeleteImage($id)
+    {
+        //Finding the image with the given id
+        $image = Image::find($id);
+
+        //Deleting the image record from the database
+        $delete_record = $image->delete();
+
+        if ($delete_record) {
+            //Deleting the file if record is deleted successfully
+            $delete_file = Storage::delete($image->name);
+            
+            if ($delete_file) {
+                //If file is deleted
+                echo "Deleted";
+            }
+        } else {
+            echo "Delete failed";
+        }
+    } //End of getDeleteImage method
 
 } //End of class
