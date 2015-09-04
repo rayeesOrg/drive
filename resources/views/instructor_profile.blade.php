@@ -179,7 +179,7 @@
                         <table>
                         @foreach ($item as $image)
                           <tr>
-                          <td><div class="span3"><a href="#" class="thumbnail"><img src="/drive/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
+                          <td><div class="span3"><a href="#" data-target="#pwdModal" data-toggle="modal" class="thumbnail"><img src="/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
                           </tr>
                         @endforeach
                         </table>
@@ -192,6 +192,32 @@
             </div><!--/col-xs-12 col-md-4--> 
             @endif
           </div>
+          <div class="container">
+  <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot my password</a>
+</div>
+
+<!--modal-->
+<div tabindex="-1" class="modal fade" id="pwdModal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+      <div class="modal-header">
+          <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+      </div>
+      <div class="modal-body">
+          <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <img src="" alt="">
+                    </div>
+                </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+          <div class="col-md-12">
+          <button class="btn" aria-hidden="true" data-dismiss="modal">Cancel</button>
+		  </div>	
+      </div>
+  </div>
           <!-- ROW END -->
 
           <div class="panel-footer "> <!-- .footer -->
