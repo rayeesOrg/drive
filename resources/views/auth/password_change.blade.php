@@ -42,8 +42,8 @@
       </div>
 
       <div>
-          <button type="submit">Register</button>
-      </div>
+          <button type="submit" >Register</button>
+      </div> 
     </form>
 
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>

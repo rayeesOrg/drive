@@ -5,10 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" href="{{ URL::asset('items/bootstrap-3.3.5/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ URL::asset('items/bootstrap-3.3.5/css/style.css') }}">
+
 
     <title>Drive</title>
   </head>
-  <body style="background:#d2d6de;">  
+  <body class="login">  
     <div class="container">
       <p><br/></p>
       <div class="row">
@@ -50,19 +52,58 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                   </div> <!-- /.input-group -->
                 </div> <!-- /.form-group -->
-
-                <hr/>
                 <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>
                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span>Login</button>
-                <p><br/></p>
               </form>
+                <hr/>
+                  <a href="#" data-target="#pwdModal" data-toggle="modal">Forgot My Password</a> |
+                  <a href="register"> Make a New Account</a>
+                  <!--modal forgot password -->
+                  <div tabindex="-1" class="modal fade" id="pwdModal" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                          <h1 class="text-center">What's My Password?</h1>
+                        </div>
+                        <div class="modalpass-body">
+                          <div class="col-md-12">
+                            <div class="panel panel-default">
+                              <div class="panel-body">
+                                <div class="text-center">        
+                                <p>If you have forgotten your password you can reset it here.</p>
+                                  <div class="panel-body">
+                                    <fieldset>
+                                      <div class="form-group">
+                                      <input name="email" class="form-control input-lg" type="email" placeholder="E-mail Address">
+                                      </div>
+                                      <input class="btn btn-lg btn-primary btn-block" type="submit" value="Send My Password">
+                                    </fieldset>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="modal-footer">
+                          <div class="col-md-12">
+                            <button class="btn" aria-hidden="true" data-dismiss="modal">Cancel</button>
+                          </div>  
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- /.modal forgot password -->                  
             </div> <!-- /.panel-body -->
           </div>  <!-- /.panel .panel-default -->
         </div> <!-- /.col-md-4 -->
       </div> <!-- /.row -->
     </div> <!-- /.container -->
 
+
+
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
    </body>
 </html>
