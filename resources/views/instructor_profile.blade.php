@@ -179,7 +179,7 @@
                         <table>
                         @foreach ($item as $image)
                           <tr>
-                          <td><div class="span3"><a href="#" data-target="#imgModal" data-toggle="modal" class="thumbnail"><img src="/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
+                          <td><div class="span3"><a href="#" data-target="#imgModal" data-toggle="modal" class="thumbnail"><img src="/drive/storage/app/{{ $image->name }}" alt="Image" class="getSrc"></a></div></td>
                           </tr>
                         @endforeach
                         </table>
@@ -193,20 +193,20 @@
             @endif
           </div>
    
-		  <!--modal img-->
-		  <div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true">
-		    <div class="modal-dialog">
-		      <div class="modal-content">
-		        <div class="modal-header">
-		        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-		        </div>
-		        <div class="modalimg-body">
-		        <img src="/storage/app/{{ $image->name }}" alt="Image">
-		        </div>
-		      </div>     
-		    </div>
-		  </div> <!-- /.modal img -->
-		  </div>
+    		  <!--modal img-->
+    		  <div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true">
+    		    <div class="modal-dialog">
+    		      <div class="modal-content">
+    		        <div class="modal-header">
+    		        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+    		        </div>
+    		        <div class="modalimg-body">
+    		        <img src="" alt="Image" class="img-responsive" id="showPic">
+    		        </div>
+    		      </div>     
+    		    </div>
+    		  </div> <!-- /.modal img -->
+          
           <!-- ROW END -->
           <div class="panel-footer "> <!-- .footer -->
           </div><!-- /.footer -->
@@ -215,7 +215,6 @@
     </div> <!-- /.container -->
     
     <!-- REQUIRED SCRIPTS FILES -->
-    </script>
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -223,7 +222,12 @@
     <script src="js/bootstrap-transition.js"></script> 
     <script src="js/bootstrap-carousel.js"></script>
     <script src="js/script.js"></script>
-
+    <script type="text/javascript">
+        $('.getSrc').click(function(){
+           var src = $(this).attr('src'); 
+           $('#showPic').attr('src', src);
+        });
+    </script>
   </body>
 </html>
 
