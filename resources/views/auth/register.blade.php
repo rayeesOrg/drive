@@ -189,7 +189,6 @@
                     </div> 
                   </div> 
                 </div>
-
               </form> <!-- /.form end tag -->
             </div> <!-- /.pannel-body closed -->
           </div> <!-- /.panel pane;-default -->

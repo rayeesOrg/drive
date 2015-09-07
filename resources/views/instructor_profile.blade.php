@@ -179,7 +179,7 @@
                         <table>
                         @foreach ($item as $image)
                           <tr>
-                          <td><div class="span3"><a href="#" class="thumbnail"><img src="/drive/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
+                          <td><div class="span3"><a href="#" data-target="#imgModal" data-toggle="modal" class="thumbnail"><img src="/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
                           </tr>
                         @endforeach
                         </table>
@@ -192,8 +192,22 @@
             </div><!--/col-xs-12 col-md-4--> 
             @endif
           </div>
+   
+		  <!--modal img-->
+		  <div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true">
+		    <div class="modal-dialog">
+		      <div class="modal-content">
+		        <div class="modal-header">
+		        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+		        </div>
+		        <div class="modalimg-body">
+		        <img src="/storage/app/{{ $image->name }}" alt="Image">
+		        </div>
+		      </div>     
+		    </div>
+		  </div> <!-- /.modal img -->
+		  </div>
           <!-- ROW END -->
-
           <div class="panel-footer "> <!-- .footer -->
           </div><!-- /.footer -->
         </div> <!-- /.panel panel-primary -->

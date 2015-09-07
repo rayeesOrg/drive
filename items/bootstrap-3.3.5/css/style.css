@@ -4,6 +4,21 @@ REGISTER STYLES
 .regbutton{
   float: right;
 }
+
+/*=======================================
+LOGIN STYLES
+==================================================*/
+.login {
+  background:#d2d6de;
+}
+
+.modal-footer {  
+ border-top: 0px;
+}
+
+
+
+
 /*=======================================
 INSTRUCTOR LIST STYLES
 ==================================================*/
@@ -212,18 +227,9 @@ label.star:before {
   font-family: FontAwesome;
 }
 
-span.stars2, span.stars2 span.stars1 {
-    display: block;
-    background: url(stars.png) 0 -16px repeat-x;
-    width: 80px;
-    height: 16px;
-}
-
-span.stars2 span.stars1 {
-    background-position: 0 0;
-  }
-
-/* ================= PROFILE SLIDER ==================== */
+/* ===================================
+PROFILE SLIDER AND MODAL STYLES
+====================================== */
 
 .carousel-indicators .active {
 background-color: #333 !important;
@@ -333,3 +339,8 @@ background: #333333;
   width:200px;
   height: 150px;
 }
+.modalimg-body{
+  height: 500px;
+  width: 600px;
+}
+
