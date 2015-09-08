@@ -7,6 +7,8 @@
     <!-- .BOOTSTRAP STYLESHEET -->
     <link rel="stylesheet" href="{{ URL::asset('items/bootstrap-3.3.5/css/bootstrap.css') }}">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> 
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
     <!-- .CUSTOM STYLESHEET -->
     <link rel="stylesheet" href="{{ URL::asset('items/bootstrap-3.3.5/css/style.css') }}">
     <title>Drive</title>
@@ -32,7 +34,7 @@
                 <p>
                   <b class="glyphicon glyphicon-earphone"></b> Mob: {{ $instructor->instructor->mob_no }} </br>
                   <b class="glyphicon glyphicon-phone-alt"></b> Tel: {{ $instructor->instructor->tel_no }} </br>
-                  <b class="glyphicon glyphicon-envelope"></b> {{ $instructor->email }} </br>
+                  <b class="glyphicon glyphicon-envelope"></b> {{ $instructor->email }} </br>     
                 </p>
               @endif  
               </div><!-- /.col-md-3 -->
@@ -48,6 +50,13 @@
                     <p><b class="glyphicon glyphicon-info-sign"></b> <i>Manual & Automatic</i></p>
                   <hr><h4>Special Offers <i class="glyphicon glyphicon-pencil"></i></h4>
                     <p><i>5 Lessons for £75</i></p>
+                      <ul class="social-network social-circle">
+                        <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
+                        <li><a href="#" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" class="icoGoogle" title="Google +"><i class="fa fa-google-plus"></i></a></li>
+                        <li><a href="#" class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                      </ul>  
                 </blockquote>
               </div> <!-- /.col-xs-12 col-md-6 -->
 
@@ -179,7 +188,7 @@
                         <table>
                         @foreach ($item as $image)
                           <tr>
-                          <td><div class="span3"><a href="#" data-target="#imgModal" data-toggle="modal" class="thumbnail"><img src="/storage/app/{{ $image->name }}" alt="Image"></a></div></td>
+                          <td><div class="span3"><a href="#" data-target="#imgModal" data-toggle="modal" class="thumbnail"><img src="/storage/app/{{ $image->name }}" alt="Image" class="getSrc"></a></div></td>
                           </tr>
                         @endforeach
                         </table>
@@ -193,20 +202,18 @@
             @endif
           </div>
    
-		  <!--modal img-->
-		  <div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true">
-		    <div class="modal-dialog">
-		      <div class="modal-content">
-		        <div class="modal-header">
-		        <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-		        </div>
-		        <div class="modalimg-body">
-		        <img src="/storage/app/{{ $image->name }}" alt="Image">
-		        </div>
-		      </div>     
-		    </div>
-		  </div> <!-- /.modal img -->
-		  </div>
+    		  <!--modal img-->
+    		  <div tabindex="-1" class="modal fade" id="imgModal" role="dialog" aria-hidden="true">
+    		    <div class="modal-dialog">
+    		      <div class="modal-content">
+    		        <div class="modalimg-body">
+                <button class="close" aria-hidden="true" type="button" data-dismiss="modal">x</button>
+    		        <img src="" alt="Image" class="img-responsive" id="showPic">
+    		        </div>
+    		      </div>     
+    		    </div>
+    		  </div> <!-- /.modal img -->
+          
           <!-- ROW END -->
           <div class="panel-footer "> <!-- .footer -->
           </div><!-- /.footer -->
@@ -215,7 +222,6 @@
     </div> <!-- /.container -->
     
     <!-- REQUIRED SCRIPTS FILES -->
-    </script>
     <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
     <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -223,7 +229,12 @@
     <script src="js/bootstrap-transition.js"></script> 
     <script src="js/bootstrap-carousel.js"></script>
     <script src="js/script.js"></script>
-
+    <script type="text/javascript">
+        $('.getSrc').click(function(){
+           var src = $(this).attr('src'); 
+           $('#showPic').attr('src', src);
+        });
+    </script>
   </body>
 </html>
 

@@ -22,7 +22,7 @@
     @if (Auth::guest())
     <p>I'm a guest</p>
     @else
-    <p>I'm logged in</p>
+    <p>I'm logged in as {{ Auth::user()->email }} ({{ Auth::user()->role }})</p>
     @endif
 
     <a href="{{ URL::action('UserController@getLogin') }}" class="btn btn-default" role="button">Log in</a>

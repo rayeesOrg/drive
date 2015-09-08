@@ -18,6 +18,13 @@ use App\Http\Controllers\Controller;
 
 class InstructorController extends Controller
 {
+
+    public function __construct()
+    {
+
+        $this->middleware('instructor', ['only' => ['getAddImage', 'postAddImage', 'getDeleteImage']]);
+    }
+
     /**
      * Display a listing of all the instructors.
      *
@@ -175,16 +182,13 @@ class InstructorController extends Controller
             if ($v->fails()) {
                 return back()->withErrors($v)->withInput();
             } else {
-                //Directory to upload the images to
-                $destinationPath = 'items/user_uploads';
-                //\creating a random name
+                //Creating a random name
                 $random_name = str_random(9);
                 //Image extension
                 $extension = $image->getClientOriginalExtension();
                 //Assigning a random filename
                 $filename = $random_name.'.'.$extension;
-                // $upload_success = $image->move($destinationPath, $filename);
-                // $upload_success = Storage::disk('local')->put($image, $filename);
+                //Uploading image to the local disk
                 $upload_success = Storage::disk('local')->put($filename, file_get_contents($image));
 
                 if ($upload_success) {
@@ -214,6 +218,9 @@ class InstructorController extends Controller
     {
         //Finding the image with the given id
         $image = Image::find($id);
+
+        //Authorization check using ImagePolicy
+        $this->authorize('destroy', $image);
 
         //Deleting the image record from the database
         $delete_record = $image->delete();
