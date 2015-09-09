@@ -84,17 +84,17 @@
             <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#"><span class="badge pull-right">42</span> Inbox </a>
                 </li>
-                <li><a href="http://www.jquery2dotnet.com">Starred</a></li>
-                <li><a href="http://www.jquery2dotnet.com">Important</a></li>
-                <li><a href="http://www.jquery2dotnet.com">Sent Mail</a></li>
-                <li><a href="http://www.jquery2dotnet.com"><span class="badge pull-right">3</span>Drafts</a></li>
+                <li><a href="">Starred</a></li>
+                <li><a href="">Important</a></li>
+                <li><a href="">Sent Mail</a></li>
+                <li><a href=""><span class="badge pull-right">3</span>Drafts</a></li>
             </ul>
         </div>
         <div class="col-sm-9 col-md-10">
             <!-- Nav tabs -->
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
-                </span>Primary</a></li>
+                </span>Inbox</a></li>
                 <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
                     Social</a></li>
                 <li><a href="#messages" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>
@@ -114,9 +114,9 @@
                             </div>
                             <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
                                 display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                            <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
+                            <span class="text-muted" style="font-size: 11px;">- Hi hello how r u1 ?</span> <span
                                 class="badge">12:10 AM</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
-                                </span></span></a><a href="#" class="list-group-item">
+                                </span></span></a><a href="#profile" data-toggle="tab" class="list-group-item">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox">
@@ -124,9 +124,9 @@
                                     </div>
                                     <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
                                         display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                    <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
+                                    <span class="text-muted" style="font-size: 11px;">- Hi hello how r u2 ?</span> <span
                                         class="badge">12:10 AM</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
-                                        </span></span></a><a href="#" class="list-group-item read">
+                                        </span></span></a><a href="#profile" data-toggle="tab" class="list-group-item read">
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox">
@@ -134,7 +134,7 @@
                                             </div>
                                             <span class="glyphicon glyphicon-star"></span><span class="name" style="min-width: 120px;
                                                 display: inline-block;">Bhaumik Patel</span> <span class="">This is big title</span>
-                                            <span class="text-muted" style="font-size: 11px;">- Hi hello how r u ?</span> <span
+                                            <span class="text-muted" style="font-size: 11px;">- Hi hello how r u3 ?</span> <span
                                                 class="badge">12:10 AM</span> <span class="pull-right"><span class="glyphicon glyphicon-paperclip">
                                                 </span></span></a>
                     </div>
@@ -147,7 +147,7 @@
                     </div>
                 </div>
                 <div class="tab-pane fade in" id="messages">
-                    ...</div>
+                    ...Email Text</div>
                 <div class="tab-pane fade in" id="settings">
                     This tab is empty.</div>
             </div>
