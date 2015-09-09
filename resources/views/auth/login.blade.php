@@ -52,7 +52,7 @@
                     <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                   </div> <!-- /.input-group -->
                 </div> <!-- /.form-group -->
-                <button type="button" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>Back</button>
+                <a type="button" class="btn btn-success" href="{{ URL::previous() }}"><span class="glyphicon glyphicon-arrow-left"></span>Back</a>
                 <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span>Login</button>
               </form>
                 <hr/>

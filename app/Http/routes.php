@@ -26,3 +26,6 @@ Route::group( ['middleware' => 'learner'], function()
 	Route::controller('review', 'ReviewController');
 
 });
+
+//Routes for all methods in the CommunicationController - RESTful controller
+Route::controller('inbox', 'CommunicationController');
