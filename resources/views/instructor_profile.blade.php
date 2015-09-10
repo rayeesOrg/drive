@@ -115,7 +115,7 @@
                       <!-- Checking if the current user is authenticated and a learner -->
                       @if (Auth::check() && Auth::user()->role === 'learner')
                         <!-- Review form -->
-                        <form method="POST" action="/drive/review/add-review">
+                        <form method="POST" action="/review/add-review">
                           {!! csrf_field() !!}
                           <div class="stars">  
                             <input class="star star-5" id="star-5" type="radio" name="star" value="5"/>  
@@ -241,6 +241,7 @@
                   <div class="form-group">
                     <label class="control-label col-md-4" for="email">Email Address</label>
                     <div class="col-md-6 input-group">
+                    <span class="input-group-addon">@</span>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"/>
                     </div>
                   </div>
@@ -252,7 +253,7 @@
                   </div>
                   <div class="form-group">
                     <div class="col-md-6">
-                    <button type="submit" value="Submit" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
+                    <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
                     </div>
                   </div>                
                       </div>
@@ -279,6 +280,9 @@
            var src = $(this).attr('src'); 
            $('#showPic').attr('src', src);
         });
+    </script>
+    <script>
+      $('#send_btn').popover({content: 'Thank You'},'click'); 
     </script>
   </body>
 </html>

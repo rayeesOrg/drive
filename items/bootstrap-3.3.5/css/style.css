@@ -162,22 +162,22 @@ ul.social-network li {
 
 
 /* footer social icons */
-.social-network a.icoRss:hover {
+.social-network a.icoRss {
   background-color: #F56505;
 }
-.social-network a.icoFacebook:hover {
+.social-network a.icoFacebook {
   background-color:#3B5998;
 }
-.social-network a.icoTwitter:hover {
+.social-network a.icoTwitter {
   background-color:#33ccff;
 }
-.social-network a.icoGoogle:hover {
+.social-network a.icoGoogle {
   background-color:#BD3518;
 }
-.social-network a.icoVimeo:hover {
+.social-network a.icoVimeo {
   background-color:#0590B8;
 }
-.social-network a.icoLinkedin:hover {
+.social-network a.icoLinkedin {
   background-color:#007bb7;
 }
 .social-network a.icoRss:hover i, 
@@ -230,9 +230,7 @@ a.socialIcon:hover, .socialHoverClass {
   transition: all 0.8s;
 }
 
-.social-network a {
- background-color: rgba(119, 119, 119, 1);
-  }
+
 
 /*======================================
 INSTRUCTOR PROFILE REVIEWS & RATING STYLES
@@ -313,6 +311,17 @@ label.star:before {
   content: '\f006';
   font-family: FontAwesome;
 }
+
+/*Stars to display rating on the profile page. Need a better star image*/ 
+span.stars2, span.stars2 span.stars1 {  
+ display: block;  
+ background: url(stars.png) 0 -16px repeat-x;  
+ width: 80px;  
+ height: 16px;  
+}   
+span.stars2 span.stars1 {  
+background-position: 0 0;  
+}   
 
 /* ===================================
 PROFILE SLIDER AND MODAL STYLES
@@ -430,11 +439,10 @@ background: #333333;
   height: 100%
   width:100%
 }
-
 /* ===================================
 ----------------INBOX-----------------
 ====================================== */
-body{ margin-top:50px;}
+.inboxbody { margin-top:50px;}
 .nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
 .tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
 .tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
@@ -449,3 +457,38 @@ hr { margin-top: 5px;margin-bottom: 10px; }
 .ad { padding: 5px;background: #F5F5F5;color: #222;font-size: 80%;border: 1px solid #E5E5E5; }
 .ad a.title {color: #15C;text-decoration: none;font-weight: bold;font-size: 110%;}
 .ad a.url {color: #093;text-decoration: none;}
+
+.radio label, .checkbox label {
+  min-height: 15px;
+}
+
+.text-muted {
+  font-size: 11px;
+}
+.name {
+  min-width: 120px;
+  display: inline-block;
+}
+.subject {
+padding-left: 150px;
+}
+.drafts {
+  color: red;
+  font-weight:normal;
+}
+
+/* ===================================
+----------SEND MESSAGE MODAL----------
+====================================== */
+.popover   {
+  background-color: #e74c3c;
+  color: #ecf0f1;
+  width: 120px;
+}
+.popover.right .arrow:after {
+  border-right-color: #e74c3c;
+}
+[class*='col-'].input-group {
+    padding-right: 15px;
+    padding-left: 15px;
+    }
