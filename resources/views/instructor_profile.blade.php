@@ -30,8 +30,8 @@
                 <hr>
                 <button type="submit" class="hire_me btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Book Lesson</button></br>
                 <button type="submit" class="hire_me btn btn-success" data-target="#msgModal" data-toggle="modal"><span class="glyphicon glyphicon-envelope"></span> Send Message</a></button></br>
-                <b class="glyphicon glyphicon-gbp"></b><b>20</b> GBP/hr <i class="glyphicon glyphicon-pencil"></i> 
-                <hr><h4>Contact info <i class="glyphicon glyphicon-pencil"></i></h4>
+                <b class="glyphicon glyphicon-gbp"></b><b>20</b> GBP/hr <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+                <hr><h4>Contact info <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                 <p>
                   <b class="glyphicon glyphicon-earphone"></b> Mob: {{ $instructor->instructor->mob_no }} </br>
                   <b class="glyphicon glyphicon-phone-alt"></b> Tel: {{ $instructor->instructor->tel_no }} </br>
@@ -43,13 +43,13 @@
               <div class="col-xs-12 col-md-6">
                 <blockquote class="info-adj">
                   <h3 class="name">{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }}</h3> 
-                  <hr><h4>Work Location <i class="glyphicon glyphicon-pencil"></i></h4>
+                  <hr><h4>Work Location <a href="#" data-target="#editModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <small><cite title="Source Title">{{ $instructor->instructor->work_location }}<span class="glyphicon glyphicon-map-marker"></span></cite></small>
-                  <h4>Areas Taught <i class="glyphicon glyphicon-pencil"></i></h4>
+                  <h4>Areas Taught <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <small><cite title="Areas">{{ $instructor->instructor->all_locations }}<span class="glyphicon glyphicon-map-marker"></span></cite></small>
-                  <hr><h4>Additional Info <i class="glyphicon glyphicon-pencil"></i></h4>
-                    <p><b class="glyphicon glyphicon-info-sign"></b> <i>Manual & Automatic</i></p>
-                  <hr><h4>Special Offers <i class="glyphicon glyphicon-pencil"></i></h4>
+                  <hr><h4><i class="glyphicon glyphicon-info-sign"></i>Additional Info <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
+                    <p><i>Manual & Automatic</i></p>
+                  <hr><h4>Special Offers <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <p><i>5 Lessons for £75</i></p>
                       <ul class="social-network social-circle">
                         <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
@@ -176,10 +176,14 @@
             <div class="col-xs-12 col-md-4">               
               <div id="myCarousel" class="carousel vertical slide" >
                 <ol class="carousel-indicators-top">
-                  <a class="left carousel-control" href="#myCarousel" data-slide="prev">▲</a>
+                  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-up"></span>
+                  </a>
                 </ol>
                 <ol class="carousel-indicators">
-                  <a class="right carousel-control" href="#myCarousel" data-slide="next">▼</a>
+                  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-down"></span>
+                  </a>
                 </ol>     
                   <!-- Carousel items -->
                   <div class="carousel-inner">
@@ -210,6 +214,12 @@
     		        <div class="modalimg-body">
                 <button class="close" aria-hidden="true" type="button" data-dismiss="modal">x</button>
     		        <img src="" alt="Image" class="img-responsive" id="showPic">
+                <a class="left carousel-control" role="button" href="#" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" role="button" href="#c" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
     		        </div>
     		      </div>     
     		    </div>
@@ -222,6 +232,51 @@
                 <div class="modal-header">
                   <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
                   <h1 class="text-center">Fill in the Details Below </h1>
+                </div>
+                <br />
+                </hr>
+                <form class="form-horizontal" name="editfrom" method="post" action="">
+                  <div class="form-group">
+                    <label class="control-label col-md-4" for="first_name">First Name</label>
+                    <div class="col-md-6">
+                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-4" for="last_name">Last Name</label>
+                    <div class="col-md-6">
+                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-4" for="email">Email Address</label>
+                    <div class="col-md-6 input-group">
+                    <span class="input-group-addon">@</span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="control-label col-md-4" for="comment">Question or Comment</label>
+                    <div class="col-md-6">
+                    <textarea rows="6" class="form-control" id="comments" name="comments" placeholder="Your question or comment here"></textarea>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-md-6">
+                    <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
+                    </div>
+                  </div>                
+                      </div>
+                    </div>
+                  </div> <!-- /.modal email message --> 
+                  
+                  <!--modal edit message-->
+          <div tabindex="-1" class="modal fade" id="editModal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+                  <h1 class="text-center">Edit Profile Details </h1>
                 </div>
                 <br />
                 </hr>
@@ -258,7 +313,9 @@
                   </div>                
                       </div>
                     </div>
-                  </div> <!-- /.modal email message --> 
+                  </div> <!-- /.modal edit message -->                   
+                  
+                  
           
           <!-- ROW END -->
           <div class="panel-footer "> <!-- .footer -->

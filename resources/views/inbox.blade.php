@@ -82,7 +82,7 @@
       <hr />
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#home"><span class="badge pull-right">42</span> Inbox </a></li>
-        <li><a href="">Starred</a></li>
+        <li><a href=""><span class="notif pull-right">2</span>Starred</a></li>
         <li><a href="">Important</a></li>
         <li><a href="">Sent Mail</a></li>
         <li><a href=""><span class="badge pull-right">3</span>Drafts</a></li>
@@ -111,8 +111,9 @@
                     </label>
                   </div>
                     <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="name">Bhaumik Patel,
+                    <span class="flname">Bhaumik Patel,
                     <span class="drafts"> Draft</span></span>
+                    </hr>
                     <span class="subject">This is big title</span>
                     <span class="text-muted">- Hi hello how r u1 ?</span> 
                     <span class="badge">12:10 AM</span> 
@@ -125,7 +126,7 @@
                     </label>
                   </div>
                     <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="name">Bhaumik Patel</span> 
+                    <span class="flname">Bhaumik Patel</span> 
                     <span class="subject">This is big title</span>
                     <span class="text-muted">- Hi hello how r u2 ?</span> 
                     <span class="badge">12:10 AM</span> 
@@ -138,7 +139,7 @@
                     </label>
                   </div>
                     <span class="glyphicon glyphicon-star"></span>
-                    <span class="name">Bhaumik Patel</span> 
+                    <span class="flname">Bhaumik Patel</span> 
                     <span class="subject">This is big title</span>
                     <span class="text-muted">- Hi hello how r u3 ?</span> 
                     <span class="badge">12:10 AM</span> 
