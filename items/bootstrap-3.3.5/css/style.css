@@ -17,8 +17,6 @@ LOGIN STYLES
 }
 
 
-
-
 /*=======================================
 INSTRUCTOR LIST STYLES
 ==================================================*/
@@ -79,21 +77,42 @@ div b {
   margin-left: 2px;
 }
 
+.glyphicon-pencil {
+  color: black;
+}
+
+.glyphicon-pencil:hover {
+  color: blue;
+ transition: all .25s
+}
+
 .info{
   padding: 20px 0;
   text-align: center;
  }
 
-.info .contact-info {
+ .glyphicon-pencil{
+  visibility: hidden;
+ }
+
+ .info:hover .glyphicon-pencil{
+  visibility:visible;
+ }
+
+ .info .contact-info {
   margin-left: 20px;
 }
 
-.info .hire_me {
+ .info .hire_me {
   margin-bottom: 2px;
 }
  .info-adj{
   float:left;
   text-align: left;
+ }
+
+ .info-adj:hover .glyphicon-pencil{
+  visibility:visible;
  }
 
  .rating {
@@ -146,6 +165,93 @@ div b {
 .rate {
   padding-left: 30px;
 }
+
+/*===================================
+  ICONS SOCIAL MEDIA
+ ==================================== */
+
+/* footer social icons */
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left:0 !important;
+  padding: 0;
+}
+ul.social-network li {
+  display: inline;
+}
+
+
+/* footer social icons */
+.social-network a.icoRss {
+  background-color: #F56505;
+}
+.social-network a.icoFacebook {
+  background-color:#3B5998;
+}
+.social-network a.icoTwitter {
+  background-color:#33ccff;
+}
+.social-network a.icoGoogle {
+  background-color:#BD3518;
+}
+.social-network a.icoVimeo {
+  background-color:#0590B8;
+}
+.social-network a.icoLinkedin {
+  background-color:#007bb7;
+}
+.social-network a.icoRss:hover i, 
+.social-network a.icoFacebook:hover i, 
+.social-network a.icoTwitter:hover i,
+.social-network a.icoGoogle:hover i, 
+.social-network a.icoVimeo:hover i, 
+.social-network a.icoLinkedin:hover i {
+  color:#fff;
+}
+a.socialIcon:hover, .socialHoverClass {
+  color:#44BCDD;
+}
+
+.social-circle li a {
+  display:inline-block;
+  position:relative;
+  margin:0 auto 0 auto;
+  -moz-border-radius:50%;
+  -webkit-border-radius:50%;
+  border-radius:50%;
+  text-align:center;
+  width: 50px;
+  height: 50px;
+  font-size:20px;
+}
+.social-circle li i {
+  margin:0;
+  line-height:50px;
+  text-align: center;
+}
+
+.social-circle li a:hover i, .triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+.social-circle i {
+  color: #fff;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+
 
 /*======================================
 INSTRUCTOR PROFILE REVIEWS & RATING STYLES
@@ -227,17 +333,16 @@ label.star:before {
   font-family: FontAwesome;
 }
 
-/*Stars to display rating on the profile page. Need a better star image*/
-span.stars2, span.stars2 span.stars1 {
-    display: block;
-    background: url(stars.png) 0 -16px repeat-x;
-    width: 80px;
-    height: 16px;
-}
-
-span.stars2 span.stars1 {
-    background-position: 0 0;
-  }
+/*Stars to display rating on the profile page. Need a better star image*/ 
+span.stars2, span.stars2 span.stars1 {  
+ display: block;  
+ background: url(stars.png) 0 -16px repeat-x;  
+ width: 80px;  
+ height: 16px;  
+}   
+span.stars2 span.stars1 {  
+background-position: 0 0;  
+}   
 
 /* ===================================
 PROFILE SLIDER AND MODAL STYLES
@@ -254,7 +359,7 @@ left: 15px;
 width: 40px;
 height: 40px;
 margin-top: -38px !important;
-font-size: 30px !important;
+font-size: 20px !important;
 font-weight: 100;
 line-height: 33px !important;
 color: #FFF;
@@ -351,8 +456,74 @@ background: #333333;
   width:200px;
   height: 150px;
 }
-.modalimg-body{
-  height: 100%;
-  width: 100%;
+.modalimg-body { 
+  height: 100%
+  width:100%
+}
+/* ===================================
+----------------INBOX-----------------
+====================================== */
+.inboxbody { margin-top:50px;}
+.nav-tabs .glyphicon:not(.no-margin) { margin-right:10px; }
+.tab-pane .list-group-item:first-child {border-top-right-radius: 0px;border-top-left-radius: 0px;}
+.tab-pane .list-group-item:last-child {border-bottom-right-radius: 0px;border-bottom-left-radius: 0px;}
+.tab-pane .list-group .checkbox { display: inline-block;margin: 0px; }
+.tab-pane .list-group input[type="checkbox"]{ margin-top: 2px; }
+.tab-pane .list-group .glyphicon { margin-right:5px; }
+.tab-pane .list-group .glyphicon:hover { color:#FFBC00; }
+a.list-group-item.read { color: #222;background-color: #F3F3F3; }
+hr { margin-top: 5px;margin-bottom: 10px; }
+.nav-pills>li>a {padding: 5px 10px;}
+
+.ad { padding: 5px;background: #F5F5F5;color: #222;font-size: 80%;border: 1px solid #E5E5E5; }
+.ad a.title {color: #15C;text-decoration: none;font-weight: bold;font-size: 110%;}
+.ad a.url {color: #093;text-decoration: none;}
+
+.radio label, .checkbox label {
+  min-height: 15px;
 }
 
+.text-muted {
+  font-size: 11px;
+}
+.flname {
+  min-width: 120px;
+  display: inline-block;
+}
+.subject {
+padding-left: 150px;
+}
+.drafts {
+  color: red;
+  font-weight:normal;
+}
+.notif {
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color:rgba(51, 122, 183, 1);
+    border-radius: 10px;
+}
+
+/* ===================================
+----------SEND MESSAGE MODAL----------
+====================================== */
+.popover   {
+  background-color: #e74c3c;
+  color: #ecf0f1;
+  width: 120px
+}
+.popover.right .arrow:after {
+  border-right-color: #e74c3c;
+}
+[class*='col-'].input-group {
+    padding-right: 15px;
+    padding-left: 15px;
+    }
