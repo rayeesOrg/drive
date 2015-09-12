@@ -30,26 +30,26 @@
                 <hr>
                 <button type="submit" class="hire_me btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Book Lesson</button></br>
                 <button type="submit" class="hire_me btn btn-success" data-target="#msgModal" data-toggle="modal"><span class="glyphicon glyphicon-envelope"></span> Send Message</a></button></br>
-                <b class="glyphicon glyphicon-gbp"></b><b>20</b> GBP/hr <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
-                <hr><h4>Contact info <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
+                <b class="glyphicon glyphicon-gbp"></b><b>20</b> GBP/hr <a href="#" data-target="#editcontactModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a>
+                <hr><h4>Contact info <a href="#" data-target="#editcontactModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                 <p>
-                  <b class="glyphicon glyphicon-earphone"></b> Mob: {{ $instructor->instructor->mob_no }} </br>
-                  <b class="glyphicon glyphicon-phone-alt"></b> Tel: {{ $instructor->instructor->tel_no }} </br>
-                  <b class="glyphicon glyphicon-envelope"></b> {{ $instructor->email }} </br>     
+                  <b class="glyphicon glyphicon-earphone"></b> Mob: {{ $instructor->instructor->mob_no }}<a href="#" data-target="#editcontactModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a> </br>
+                  <b class="glyphicon glyphicon-phone-alt"></b> Tel: {{ $instructor->instructor->tel_no }}<a href="#" data-target="#editcontactModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a> </br>
+                  <b class="glyphicon glyphicon-envelope"></b> {{ $instructor->email }}<a href="#" data-target="#editcontactModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a> </br>     
                 </p>
               @endif  
               </div><!-- /.col-md-3 -->
 
               <div class="col-xs-12 col-md-6">
                 <blockquote class="info-adj">
-                  <h3 class="name">{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }}</h3> 
+                  <h3 class="name">{{ $instructor->instructor->title }} {{ $instructor->instructor->first_name }} {{ $instructor->instructor->last_name }}<a href="#" data-target="#editModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h3> 
                   <hr><h4>Work Location <a href="#" data-target="#editModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <small><cite title="Source Title">{{ $instructor->instructor->work_location }}<span class="glyphicon glyphicon-map-marker"></span></cite></small>
-                  <h4>Areas Taught <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
+                  <h4>Areas Taught <a href="#" data-target="#editModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <small><cite title="Areas">{{ $instructor->instructor->all_locations }}<span class="glyphicon glyphicon-map-marker"></span></cite></small>
-                  <hr><h4><i class="glyphicon glyphicon-info-sign"></i>Additional Info <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
+                  <hr><h4><i class="glyphicon glyphicon-info-sign"></i>Additional Info <a href="#" data-target="#editModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <p><i>Manual & Automatic</i></p>
-                  <hr><h4>Special Offers <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
+                  <hr><h4>Special Offers <a href="#" data-target="#editModal" data-toggle="modal"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                     <p><i>5 Lessons for £75</i></p>
                       <ul class="social-network social-circle">
                         <li><a href="#" class="icoRss" title="Rss"><i class="fa fa-rss"></i></a></li>
@@ -268,55 +268,128 @@
                   </div>                
                       </div>
                     </div>
-                  </div> <!-- /.modal email message --> 
-                  
-                  <!--modal edit message-->
-          <div tabindex="-1" class="modal fade" id="editModal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
-                  <h1 class="text-center">Edit Profile Details </h1>
-                </div>
-                <br />
-                </hr>
-                <form class="form-horizontal" name="commentform" method="post" action="send_form_email.php">
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="first_name">First Name</label>
-                    <div class="col-md-6">
-                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="last_name">Last Name</label>
-                    <div class="col-md-6">
-                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="email">Email Address</label>
-                    <div class="col-md-6 input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="comment">Question or Comment</label>
-                    <div class="col-md-6">
-                    <textarea rows="6" class="form-control" id="comments" name="comments" placeholder="Your question or comment here"></textarea>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-md-6">
-                    <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
-                    </div>
-                  </div>                
+                  </div> <!-- /.modal email message -->
+
+                  <!-- .modal edit profile -->   
+                  <div id="editModal" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title">Edit Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                        <div class="col-md-6">
+                         <form method="POST" action="">
+                          <div class="form-group">
+                            <label for="inputpricephr">First Name</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-user"></span></span>
+                              <input type="text" class="form-control" name="first_name" id="inputfirstname" value="{{ old('first_name') }}" placeholder="First Name">
+                            </div> <!-- /.input-group  -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputlastname">Last Name</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-user"></span></span>
+                              <input type="text" class="form-control" name="last_name" id="inputlastname" value="{{ old('last_name') }}" placeholder="Last Name">
+                            </div> <!-- /.input-group -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputall_locations">Work Location</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-map-marker"></span></span>
+                              <input type="text" class="form-control" name="all_locations" id="inputall_locations" value="{{ old('all_locations') }}" placeholder="Work Location">
+                            </div> <!-- /.input-group -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputall_locations">Areas taught</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-map-marker"></span></span>
+                              <input type="text" class="form-control" name="all_locations" id="inputall_locations" value="{{ old('all_locations') }}" placeholder="e.g. Kingston, Twickenham ">
+                            </div> <!-- /.input-group -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputtitle" >Additional Info</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-info-sign"></span></span>
+                              <select class="form-control" name="title" value="{{ old('title') }}">
+                                <option selected value="Automatic">Automatic</option>
+                                <option value="Manual">Manual</option>
+                                <option value="Automatic & Manual">Automatic & Manual</option>
+                              </select>
+                              </div>
+                          </div> 
+                          <div class="form-group">
+                            <label for="inputall_locations">Special offers</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-menu-hamburger"></span></span>
+                              <input type="text" class="form-control" name="all_locations" id="inputall_locations" value="{{ old('all_locations') }}" placeholder="Special offers">
+                            </div> <!-- /.input-group -->
+                          </div> <!-- /.form-group -->                          
+                          <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                          <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Save changes</button>
+                          </form>
+                        </div>
+                        </div>
+                        <div class="modal-footer">   
+                        </div>
                       </div>
                     </div>
-                  </div> <!-- /.modal edit message -->                   
-                  
-                  
-          
+                  </div> <!-- /.modal edit profile-->  
+
+                  <!-- . modal edit contact profile -->   
+                  <div id="editcontactModal" class="modal fade">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title">Edit Profile</h4>
+                        </div>
+                        <div class="modal-body">
+                        <div class="col-md-6">
+                         <form method="POST" action="">
+                          <div class="form-group">
+                            <label for="inputpricephr">Price</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-gbp"></span></span>
+                              <input type="text" class="form-control" name="price_ph" id="inputpriceph" value="{{ old('price_ph') }}" placeholder="£0.00">
+                              <span class="input-group-addon">Gbp/hr</span>
+                            </div> <!-- /.input-group  -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputmob_no">Mob:</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-earphone"></span></span>
+                              <input type="text" class="form-control" name="mob_no" id="inputmob_no" value="{{ old('mob_no') }}" placeholder="Enter E-mail...">
+                            </div> <!-- /.input-group  -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputtel_no">Tel:</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-phone-alt"></span></span>
+                              <input type="text" class="form-control" name="tel_no" id="inputtel_no" value="{{ old('tel_no') }}" placeholder="Enter E-mail...">
+                            </div> <!-- /.input-group  -->
+                          </div> <!-- /.form-group -->
+                          <div class="form-group">
+                            <label for="inputemail">E-mail</label>
+                            <div class="input-group">
+                              <span class="input-group-addon" id="basic-addon1="><span class="glyphicon glyphicon-envelope"></span></span>
+                              <input type="text" class="form-control" name="email" id="inputemail" value="{{ old('email') }}" placeholder="Enter E-mail...">
+                            </div> <!-- /.input-group  -->
+                          </div> <!-- /.form-group -->
+                          <p class="text-warning"><small>If you don't save, your changes will be lost.</small></p>
+                          <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                          <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Save changes</button>
+                          </form>
+                        </div>
+                        </div>
+                        <div class="modal-footer">   
+                        </div>
+                      </div>
+                    </div>
+                  </div> <!-- /.modal edit contact profile--> 
           <!-- ROW END -->
           <div class="panel-footer "> <!-- .footer -->
           </div><!-- /.footer -->

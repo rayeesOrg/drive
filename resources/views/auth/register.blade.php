@@ -141,14 +141,14 @@
                     <div class="form-group">
                       <label for="inputpostcode" class="col-md-4 control-label">Postcode</label>
                         <div class="col-md-8">
-                          <input type="text" class="form-control" name="postcode" id="inputCounty" value="{{ old('postcode') }}" placeholder="Enter postcode e.g. TW14 8ED" />
+                          <input type="text" class="form-control" name="postcode" id="inputpostcode" value="{{ old('postcode') }}" placeholder="Enter postcode e.g. TW14 8ED" />
                         </div>
                     </div>
 
                     <div class="form-group">
                       <label for="inputmob_no" class="col-md-4 control-label">Mobile No*</label>
                         <div class="col-md-8">
-                          <input type="tel" class="form-control" name="mob_no" id="inputmob" value="{{ old('mob_no') }}" placeholder="Enter Mobile No...">
+                          <input type="tel" class="form-control" name="mob_no" id="inputmob_no" value="{{ old('mob_no') }}" placeholder="Enter Mobile No...">
                         </div>
                     </div>
                     
@@ -162,7 +162,7 @@
                     <div class="form-group">
                       <label for="inputrole" class="col-md-4 control-label">Role</label>
                         <div class="col-md-8">
-                          <input type="text" class="form-control" name="role" id="inputrole" value="{{ old('role') }}" placeholder="Enter Telphone No...">
+                          <input type="text" class="form-control" name="role" id="inputrole" value="{{ old('role') }}" placeholder="instructor or learner...">
                         </div>
                     </div>
                     

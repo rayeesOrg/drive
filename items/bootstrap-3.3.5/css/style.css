@@ -95,10 +95,17 @@ div b {
   visibility: hidden;
  }
 
- .info:hover .glyphicon-pencil{
+ h4:hover .glyphicon-pencil{
   visibility:visible;
  }
 
+.name:hover .glyphicon-pencil{
+  visibility:visible;
+}
+
+.a:hover .glyphicon-pencil {
+  visibility:visible;
+}
  .info .contact-info {
   margin-left: 20px;
 }
@@ -106,13 +113,10 @@ div b {
  .info .hire_me {
   margin-bottom: 2px;
 }
+
  .info-adj{
   float:left;
   text-align: left;
- }
-
- .info-adj:hover .glyphicon-pencil{
-  visibility:visible;
  }
 
  .rating {
@@ -180,7 +184,6 @@ ul.social-network {
 ul.social-network li {
   display: inline;
 }
-
 
 /* footer social icons */
 .social-network a.icoRss {
@@ -250,8 +253,6 @@ a.socialIcon:hover, .socialHoverClass {
   -ms-transition: all 0.8s;
   transition: all 0.8s;
 }
-
-
 
 /*======================================
 INSTRUCTOR PROFILE REVIEWS & RATING STYLES
