@@ -29,7 +29,7 @@
                 <img src="http://www.gravatar.com/avatar/{{ md5($instructor->email) }}?s=200&d=mm" alt="My avatar" class="img-rounded img-responsive">
                 <hr>
                 <button type="submit" class="hire_me btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Book Lesson</button></br>
-                <button type="submit" class="hire_me btn btn-success" data-target="#msgModal" data-toggle="modal"><span class="glyphicon glyphicon-envelope"></span> Send Message</a></button></br>
+                <button type="submit" class="hire_me btn btn-success" data-target="#msgModal" data-toggle="modal"><span class="glyphicon glyphicon-envelope"></span> Message</a></button></br>
                 <b class="glyphicon glyphicon-gbp"></b><b>20</b> GBP/hr <a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
                 <hr><h4>Contact info <a href="#"><span class="glyphicon glyphicon-pencil"></span></a></h4>
                 <p>
@@ -235,42 +235,26 @@
                 </div>
                 <br />
                 </hr>
-                <form class="form-horizontal" name="editfrom" method="post" action="">
+                <form class="form-horizontal" name="editfrom" method="POST" action="/drive/inbox/send-message">
+                  {!! csrf_field() !!}
                   <div class="form-group">
-                    <label class="control-label col-md-4" for="first_name">First Name</label>
+                    <label class="control-label col-md-4" for="comment">Message</label>
                     <div class="col-md-6">
-                    <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="last_name">Last Name</label>
-                    <div class="col-md-6">
-                    <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="email">Email Address</label>
-                    <div class="col-md-6 input-group">
-                    <span class="input-group-addon">@</span>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Email Address"/>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="control-label col-md-4" for="comment">Question or Comment</label>
-                    <div class="col-md-6">
-                    <textarea rows="6" class="form-control" id="comments" name="comments" placeholder="Your question or comment here"></textarea>
+                      <textarea rows="6" class="form-control" id="message" name="message" placeholder="Type your message here"></textarea>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-md-6">
                     <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
                     </div>
-                  </div>                
-                      </div>
-                    </div>
-                  </div> <!-- /.modal email message --> 
+                  </div>
+                </form>              
+              </div>
+            </div>
+          </div> <!-- /.modal email message --> 
+                
                   
-                  <!--modal edit message-->
+          <!--modal edit message-->
           <div tabindex="-1" class="modal fade" id="editModal" role="dialog" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -310,10 +294,11 @@
                     <div class="col-md-6">
                     <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
                     </div>
-                  </div>                
-                      </div>
-                    </div>
-                  </div> <!-- /.modal edit message -->                   
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div> <!-- /.modal edit message -->
                   
                   
           
