@@ -53,4 +53,13 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->hasOne('App\Instructor', 'user_id', 'user_id');
     }
+
+    /**
+     * The conversations that belong to the user.
+     * Many-Many Relationship with pivot table.
+     */
+    public function conversations()
+    {
+        return $this->belongsToMany('App\Conversation', 'participants', 'user_id', 'conversation_id')->withPivot('is_read', 'is_starred')->withTimestamps();
+    }
 }

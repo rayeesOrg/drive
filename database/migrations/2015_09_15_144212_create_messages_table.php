@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->increments('message_id');
             $table->integer('conversation_id')->length(10)->unsigned();
             $table->integer('sender_user_id')->length(10)->unsigned(); //Who sent the message
+            $table->text('message_content', 3000);
             $table->timestamps();
 
             $table->foreign('conversation_id')->references('conversation_id')->on('conversations')->onDelete('cascade')->onUpdate('cascade');
