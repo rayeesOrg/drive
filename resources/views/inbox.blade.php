@@ -94,9 +94,9 @@
             <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
             </span>Inbox</a></li>
             <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
-                Social</a></li>
+                Profile</a></li>
             <li><a href="#messages" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>
-                Promotions</a></li>
+                Messages</a></li>
             <li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-plus no-margin">
             </span></a></li>
           </ul>
@@ -104,47 +104,32 @@
             <div class="tab-content">
               <div class="tab-pane fade in active" id="home">
                 <div class="list-group">
-                  <a href="#messages" data-toggle="tab" class="list-group-item">
-                  <div class="checkbox">
-                    <label>
-                    <input type="checkbox">
-                    </label>
-                  </div>
+                  @foreach($messages as $message)
+                  <a href="#messages" data-toggle="tab" class="list-group-item" id="msg" onclick="myFunction()">
+                    <div class="checkbox">
+                      <label>
+                      <input type="checkbox">
+                      </label>
+                    </div>
                     <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="flname">Bhaumik Patel,
-                    <span class="drafts"> Draft</span></span>
+                    @foreach ($message->conversation->messages->chunk(3) as $chunk)
+                      @foreach ($chunk as $msg)
+                        <span class="flname">{{ $msg->user->learner->first_name }}
+                        <!-- <span class="drafts"> Draft</span> --></span>
+                      @endforeach
+                    @endforeach
                     </hr>
-                    <span class="subject">This is big title</span>
-                    <span class="text-muted">- Hi hello how r u1 ?</span> 
-                    <span class="badge">12:10 AM</span> 
-                    <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span>
+                    <span class="subject">{{ $message->conversation->subject }}</span>
+                    @foreach ($message->conversation->messages->chunk(3) as $chunk)
+                      @foreach ($chunk as $msg)
+                        <span class="text-muted" id="content">{{ $msg->message_content }}</span>
+                        <span class="badge">{{ $msg->created_at }}</span>
+                        <!-- <span class="badge">12:10 AM</span> -->
+                      @endforeach
+                    @endforeach
+                    <!-- <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span> -->
                   </a>
-                  <a href="#messages" data-toggle="tab" class="list-group-item read">
-                  <div class="checkbox">
-                    <label>
-                    <input type="checkbox">
-                    </label>
-                  </div>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    <span class="flname">Bhaumik Patel</span> 
-                    <span class="subject">This is big title</span>
-                    <span class="text-muted">- Hi hello how r u2 ?</span> 
-                    <span class="badge">12:10 AM</span> 
-                    <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span>
-                  </a>
-                  <a href="#messages" data-toggle="tab" class="list-group-item read">
-                  <div class="checkbox">
-                    <label>
-                    <input type="checkbox">
-                    </label>
-                  </div>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="flname">Bhaumik Patel</span> 
-                    <span class="subject">This is big title</span>
-                    <span class="text-muted">- Hi hello how r u3 ?</span> 
-                    <span class="badge">12:10 AM</span> 
-                    <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span>
-                  </a>
+                  @endforeach
                 </div>
 	          </div>
 
@@ -156,16 +141,18 @@
 	            </div>
 	          </div>
               <div class="tab-pane fade in" id="messages">
-                ...Email Text</div>
+                This tab is empty.
+              </div>
               <div class="tab-pane fade in" id="settings">
-                This tab is empty.</div>
+                This tab is empty.
+              </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
 <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
-  
 </body>
 </html>

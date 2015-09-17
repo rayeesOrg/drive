@@ -37,4 +37,12 @@ class Message extends Model
     {
         return $this->belongsTo('App\Conversation', 'conversation_id', 'conversation_id');
     }
+
+    /**
+     * Get the user that owns the message.
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'sender_user_id', 'user_id');
+    }
 }

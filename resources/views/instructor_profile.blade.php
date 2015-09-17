@@ -238,11 +238,19 @@
                 <form class="form-horizontal" name="editfrom" method="POST" action="/drive/inbox/send-message">
                   {!! csrf_field() !!}
                   <div class="form-group">
+                    <label class="control-label col-md-4" for="subject">Subject</label>
+                    <div class="col-md-6">
+                    <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject"/>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <label class="control-label col-md-4" for="comment">Message</label>
                     <div class="col-md-6">
                       <textarea rows="6" class="form-control" id="message" name="message" placeholder="Type your message here"></textarea>
                     </div>
                   </div>
+                  <!-- Hidden form field for recipient's user_id -->
+                  <input type="hidden" name="recipient" value="{{ $instructor->user_id }}">
                   <div class="form-group">
                     <div class="col-md-6">
                     <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>

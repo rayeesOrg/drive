@@ -62,4 +62,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     {
         return $this->belongsToMany('App\Conversation', 'participants', 'user_id', 'conversation_id')->withPivot('is_read', 'is_starred')->withTimestamps();
     }
+
+    /**
+     * Get the messages of the user.
+     */
+    public function messages()
+    {
+        return $this->hasMany('App\Message', 'sender_user_id', 'user_id');
+    }
 }
