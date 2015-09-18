@@ -16,6 +16,14 @@ use App\Http\Controllers\Controller;
 
 class InboxController extends Controller
 {
+    public function __construct()
+    {
+        /**
+         * Middleware to allow access to only logged in users
+         */
+        $this->middleware('auth');
+    }
+
     /**
      * Display the inbox.
      *
