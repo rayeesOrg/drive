@@ -33,12 +33,13 @@ class InboxController extends Controller
     {
         $user_id = Auth::user()->user_id;
         $messages = Participant::where('user_id', $user_id)->with('conversation.messages', 'user')->get();
+        $sent_messages = Message::where('sender_user_id', $user_id)->with('conversation.users')->get();
         
 
         // $messages = $user->with('conversations')->has('conversations')->get();
 
         //
-        return view('inbox', ['messages' => $messages]);
+        return view('inbox', ['messages' => $messages, 'sent_messages' => $sent_messages]);
     }
 
     /**

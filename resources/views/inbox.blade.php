@@ -91,10 +91,10 @@
       <div class="col-sm-9 col-md-10">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+          <li class="active"><a href="#inbox" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
           </span>Inbox</a></li>
-          <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
-              Profile</a></li>
+          <li><a href="#sent" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
+              Sent Mail</a></li>
           <li><a href="#messages" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>
               Messages</a></li>
           <li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-plus no-margin">
@@ -102,7 +102,7 @@
         </ul>
         <!-- Tab panes -->
         <div class="tab-content">
-          <div class="tab-pane fade in active" id="home">
+          <div class="tab-pane fade in active" id="inbox">
             <div class="list-group">
               @foreach($messages as $message)
                 @if ($message->is_read === 0)
@@ -112,42 +112,59 @@
                 <!-- If read -->
                 <a data-toggle="tab" class="list-group-item read" id="msg">
                 @endif
-                <div class="checkbox">
-                  <label>
-                  <input type="checkbox">
-                  </label>
-                </div>
-                <span class="glyphicon glyphicon-star-empty"></span>
-                @foreach ($message->conversation->messages->chunk(3) as $chunk)
-                  @foreach ($chunk as $msg)
-                    <span class="flname">{{ $msg->user->learner->first_name }}
-                    <!-- <span class="drafts"> Draft</span> --></span>
+                  <div class="checkbox">
+                    <label><input type="checkbox"></label>
+                  </div>
+                  <span class="glyphicon glyphicon-star-empty"></span>
+                  @foreach ($message->conversation->messages->chunk(3) as $chunk)
+                    @foreach ($chunk as $msg)
+                      @if ($msg->user->role === "instructor")
+                        <span class="flname">From: {{ $msg->user->instructor->first_name }} {{ $msg->user->instructor->last_name }}</span>
+                      @elseif ($msg->user->role === "learner")
+                        <span class="flname">{{ $msg->user->learner->first_name }} {{ $msg->user->learner->last_name }}</span>
+                      @endif
+                    @endforeach
                   @endforeach
-                @endforeach
-                </hr>
-                <span class="subject">{{ $message->conversation->subject }}</span>
-                @foreach ($message->conversation->messages->chunk(3) as $chunk)
-                  @foreach ($chunk as $msg)
-                    <span class="text-muted" id="content">{{ $msg->message_content }}</span>
-                    @if ($msg->created_at->format('d/m/y') === date("d/m/y"))
-                      <!-- If message was recieved today -->
-                      <span class="badge">{{ $msg->created_at->format('h:i A') }}</span>
-                    @else
-                      <!-- If message was not recieved today -->
-                      <span class="badge">{{ $msg->created_at->format('d/m/y h:i A') }}</span>
-                    @endif
+                  </hr>
+                  <span class="subject">{{ $message->conversation->subject }}</span>
+                  @foreach ($message->conversation->messages->chunk(3) as $chunk)
+                    @foreach ($chunk as $msg)
+                      <span class="text-muted" id="content">{{ $msg->message_content }}</span>
+                      @if ($msg->created_at->format('d/m/y') === date("d/m/y"))
+                        <!-- If message was recieved today -->
+                        <span class="badge">{{ $msg->created_at->format('h:i A') }}</span>
+                      @else
+                        <!-- If message was not recieved today -->
+                        <span class="badge">{{ $msg->created_at->format('d/m/y h:i A') }}</span>
+                      @endif
+                    @endforeach
                   @endforeach
-                @endforeach
-                <!-- <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span> -->
-              </a>
+                  <button type="button" class="btn btn-default btn-xs">Reply</button>
+                  <!-- <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span> -->
+                </a>
               @endforeach
             </div>
           </div>
-          <div class="tab-pane fade in" id="profile">
+          <div class="tab-pane fade in" id="sent">
             <div class="list-group">
-              <div class="list-group-item">
-                <span class="text-center">This tab is empty.</span>
-              </div>
+              @foreach($sent_messages as $sent)
+                <a class="list-group-item">
+                  <div class="checkbox">
+                    <label><input type="checkbox"></label>
+                  </div>
+                  @foreach ($sent->conversation->users->chunk(3) as $chunk)
+                    @foreach ($chunk as $sent_to)
+                      @if ($sent_to->role === "instructor")
+                        <span class="flname">To: {{ $sent_to->instructor->first_name }} {{ $sent_to->instructor->last_name }}</span>
+                      @elseif ($sent_to->role === "learner")
+                        <span class="flname">To: {{ $sent_to->learner->first_name }} {{ $sent_to->learner->last_name }}</span>
+                      @endif
+                    @endforeach
+                  @endforeach
+                  <span class="subject">{{ $sent->conversation->subject }}</span>
+                  <span class="text-muted">{{ $sent->message_content }}</span>
+                </a>
+              @endforeach
             </div>
           </div>
           <div class="tab-pane fade in" id="messages">
@@ -160,6 +177,7 @@
       </div>
     </div>
   </div>
+  {{-- dd($sent_messages) --}}
 
   <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
   <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
