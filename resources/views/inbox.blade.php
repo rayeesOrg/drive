@@ -139,7 +139,7 @@
                       @endif
                     @endforeach
                   @endforeach
-                  <button type="button" class="btn btn-default btn-xs">Reply</button>
+                  <button type="button" class="btn btn-default btn-xs" data-target="#replyModal" data-toggle="modal">Reply</button>
                   <!-- <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span> -->
                 </a>
               @endforeach
@@ -177,7 +177,42 @@
       </div>
     </div>
   </div>
-  {{-- dd($sent_messages) --}}
+
+  <!--modal email message-->
+  <div tabindex="-1" class="modal fade" id="replyModal" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close" aria-hidden="true" type="button" data-dismiss="modal">×</button>
+          <h1 class="text-center">Fill in the Details Below </h1>
+        </div>
+        <br />
+        </hr>
+        <form class="form-horizontal" name="replyfrom" method="POST" action="/drive/inbox/reply-message">
+          {!! csrf_field() !!}
+          <!-- <div class="form-group">
+            <label class="control-label col-md-4" for="subject">Subject</label>
+            <div class="col-md-6">
+            <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject"/>
+            </div>
+          </div> -->
+          <div class="form-group">
+            <label class="control-label col-md-4" for="comment">Message</label>
+            <div class="col-md-6">
+              <textarea rows="6" class="form-control" id="message" name="message" placeholder="Type your reply message here"></textarea>
+            </div>
+          </div>
+          <!-- Hidden form field for recipient's user_id -->
+          <input name="recipient" value="Hi">
+          <div class="form-group">
+            <div class="col-md-6">
+              <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div> <!-- /.modal email message -->
 
   <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
   <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
