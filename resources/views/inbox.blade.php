@@ -119,7 +119,7 @@
                   @foreach ($message->conversation->messages->chunk(3) as $chunk)
                     @foreach ($chunk as $msg)
                       @if ($msg->user->role === "instructor")
-                        <span class="flname">From: {{ $msg->user->instructor->first_name }} {{ $msg->user->instructor->last_name }}</span>
+                        <span class="flname" id="from" name="from">From: {{ $msg->user->instructor->first_name }} {{ $msg->user->instructor->last_name }}</span>
                       @elseif ($msg->user->role === "learner")
                         <span class="flname">{{ $msg->user->learner->first_name }} {{ $msg->user->learner->last_name }}</span>
                       @endif
@@ -139,7 +139,8 @@
                       @endif
                     @endforeach
                   @endforeach
-                  <button type="button" class="btn btn-default btn-xs" data-target="#replyModal" data-toggle="modal">Reply</button>
+                  <button type="button" class="btn btn-default btn-xs" id="ray" data-from="Rayees">Reply</button>
+                  <!-- <button type="button" class="btn btn-default btn-xs" id="ray" data-target="#replyModal" data-toggle="modal" data-from="Rayees">Reply</button> -->
                   <!-- <span class="pull-right"><span class="glyphicon glyphicon-paperclip"></span></span> -->
                 </a>
               @endforeach
@@ -203,7 +204,7 @@
             </div>
           </div>
           <!-- Hidden form field for recipient's user_id -->
-          <input name="recipient" value="Hi">
+          <input id="recipient" class="form-control">
           <div class="form-group">
             <div class="col-md-6">
               <button type="submit" value="Submit" class="btn btn-primary pull-right" id="send_btn"><span class="glyphicon glyphicon-envelope"></span> Submit Email</button>
@@ -216,5 +217,16 @@
 
   <script type="text/javascript" src="items/bootstrap-3.3.5/js/jquery-1.11.3.js"></script>
   <script src="items/bootstrap-3.3.5/js/bootstrap.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+    $(document).on('click', '#ray', function() {
+      var recipient = $(this).data('from')
+      // alert($(this).data('from'));
+      $('#replyModal').modal('show');
+      $('#recipient').val(recipient)
+    });
+  });
+
+  </script>
 </body>
 </html>
