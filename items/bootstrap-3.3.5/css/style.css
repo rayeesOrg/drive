@@ -1,7 +1,36 @@
+#map-container { 
+  height: 500px;
+}
+
+.lstatus {
+  color: white;
+  margin-right: 30px;
+  margin-top: 5px;
+  margin-bottom:5px;
+}
+
+.navbar {
+  background-color: #449d44;
+}
+
+.navbar a {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.home-body {
+  background:#d2d6de;
+}
+
+.alert {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
 /*=======================================
-REGISTER STYLES
+REGISTER  STYLES
 ==================================================*/
-.regbutton{
+.regbutton {
   float: right;
 }
 
@@ -95,10 +124,17 @@ div b {
   visibility: hidden;
  }
 
- .info:hover .glyphicon-pencil{
+ h4:hover .glyphicon-pencil{
   visibility:visible;
  }
 
+.name:hover .glyphicon-pencil{
+  visibility:visible;
+}
+
+:hover .glyphicon-pencil {
+  visibility:visible;
+}
  .info .contact-info {
   margin-left: 20px;
 }
@@ -106,13 +142,10 @@ div b {
  .info .hire_me {
   margin-bottom: 2px;
 }
+
  .info-adj{
   float:left;
   text-align: left;
- }
-
- .info-adj:hover .glyphicon-pencil{
-  visibility:visible;
  }
 
  .rating {
@@ -180,7 +213,6 @@ ul.social-network {
 ul.social-network li {
   display: inline;
 }
-
 
 /* footer social icons */
 .social-network a.icoRss {
@@ -250,8 +282,6 @@ a.socialIcon:hover, .socialHoverClass {
   -ms-transition: all 0.8s;
   transition: all 0.8s;
 }
-
-
 
 /*======================================
 INSTRUCTOR PROFILE REVIEWS & RATING STYLES
