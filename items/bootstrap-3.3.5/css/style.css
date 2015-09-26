@@ -1,7 +1,36 @@
+#map-container { 
+  height: 500px;
+}
+
+.lstatus {
+  color: white;
+  margin-right: 30px;
+  margin-top: 5px;
+  margin-bottom:5px;
+}
+
+.navbar {
+  background-color: #449d44;
+}
+
+.navbar a {
+  margin-left: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.home-body {
+  background:#d2d6de;
+}
+
+.alert {
+  padding-top: 1px;
+  padding-bottom: 1px;
+}
 /*=======================================
-REGISTER STYLES
+REGISTER  STYLES
 ==================================================*/
-.regbutton{
+.regbutton {
   float: right;
 }
 
@@ -103,7 +132,7 @@ div b {
   visibility:visible;
 }
 
-.a:hover .glyphicon-pencil {
+:hover .glyphicon-pencil {
   visibility:visible;
 }
  .info .contact-info {
